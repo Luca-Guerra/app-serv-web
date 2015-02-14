@@ -27,7 +27,7 @@ public class AccessController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        String forward = "/log-in.jsp";         
+        String forward = "/jsp/log-in.jsp";         
         RequestDispatcher dispatcher = request.getRequestDispatcher(forward);  
         dispatcher.forward(request, response); 
     }
