@@ -50,3 +50,8 @@ input
     border-radius:5px;
     width:100px;
 }
+
+.log-in .btn:hover
+{
+    background-color: #89C6C6;
+}

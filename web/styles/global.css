@@ -1,0 +1,33 @@
+body
+{
+    margin:0px;
+    font: normal 12px/20px 'Open Sans',sans-serif;
+}
+
+.header
+{
+    background-color: #89C6C6;
+}
+
+.header div
+{
+    width: 50px;
+    height: 50px;
+    padding:8px;
+    display:inline-block;
+    font-size: 4em;
+    border: 1px solid;
+    border-radius:5px;
+    background-color: white;
+}
+
+.header div img
+{
+    width:50px;
+    height: 50px;
+}
+
+.header div img:hover
+{
+    cursor: pointer;
+}
