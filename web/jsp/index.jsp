@@ -14,8 +14,8 @@
             }
         %>
         <div class="header">
-            <div><a href="log-out.jsp"><img alt="Esci" src="/public_webapp/images/agend.png" /></a></div>
-            <div><img alt="Agenda" src="/public_webapp/images/shutdown.png" /></div>
+            <div><a href="log-out.jsp"><img alt="Esci" src="/public_webapp/images/shutdown.png" /></a></div>
+            <div><img alt="Agenda" src="/public_webapp/images/agend.png" /></div>
         </div>
         <p>Salve <% out.println(session.getAttribute("username").toString()); %></p>
     </body>

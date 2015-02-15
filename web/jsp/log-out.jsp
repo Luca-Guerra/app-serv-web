@@ -10,8 +10,7 @@
             session.removeAttribute("username"); 
             session.removeAttribute("password"); 
             session.invalidate(); 
+            response.sendRedirect("log-in.jsp");
         %> 
-        <h1>Logout realizzato con successo!.</h1>
-        <a href="/public_webapp/index.html">Log-in</a>
     </body>
 </html>

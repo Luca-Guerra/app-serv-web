@@ -4,9 +4,15 @@ body
     font: normal 12px/20px 'Open Sans',sans-serif;
 }
 
+body p{
+    font-size:2em;
+}
+
 .header
 {
-    background-color: #89C6C6;
+    background-color: #028112;
+    overflow: auto;
+    width: 100%;
 }
 
 .header div
@@ -19,6 +25,8 @@ body
     border: 1px solid;
     border-radius:5px;
     background-color: white;
+    float:right;
+    margin:5px;
 }
 
 .header div img
