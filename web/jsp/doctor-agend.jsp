@@ -1,3 +1,9 @@
+<%-- 
+    Document   : doctor-agend
+    Created on : 15-feb-2015, 16.18.17
+    Author     : Luca
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Qualcosa è andato storto.</h1>
+        <h1>Hello World!</h1>
     </body>
 </html>

@@ -1,3 +1,9 @@
+<%-- 
+    Document   : patient-agend
+    Created on : 15-feb-2015, 16.18.06
+    Author     : Luca
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,11 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% 
-            session.removeAttribute("username"); 
-            session.removeAttribute("password"); 
-            session.invalidate(); 
-            response.sendRedirect("log-in.jsp");
-        %> 
+        <h1>Hello World!</h1>
     </body>
 </html>

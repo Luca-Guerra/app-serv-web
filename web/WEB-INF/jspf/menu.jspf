@@ -1,0 +1,12 @@
+<%@ page pageEncoding="UTF-8" %>
+<% 
+    if(session.getAttribute("username") == null){
+        response.sendRedirect("jsp/access.jsp"); 
+        return;
+    }
+%>
+<div class="header">
+    <div><a href="AccessController"><img alt="Esci" src="/public_webapp/images/shutdown.png" /></a></div>
+    <div><img alt="Agenda" src="/public_webapp/images/agend.png" /></div>
+</div>
+<p>Salve <% out.println(session.getAttribute("username").toString()); %></p>
