@@ -1,8 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,11 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Account;
+import repositories.AccountRepository;
 
 
 @WebServlet(name = "AccessController", urlPatterns = {"/AccessController"})
 public class AccessController extends HttpServlet {
 
+    private final AccountRepository rep = new AccountRepository(getServletContext());
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -25,7 +26,6 @@ public class AccessController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
- 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,29 +67,18 @@ public class AccessController extends HttpServlet {
         String password = request.getParameter("password"); 
         HttpSession session = request.getSession();
         String forward = "jsp/access.jsp";
-        if(username != null && password != null && ExistsAccount(username, password)) { 
-            session.setAttribute("username",username); 
-            forward = GetForward(username);
+        if(username != null && password != null){
+            Account account = rep.GetAccount(username);
+            if(account != null && account.Password.equals(password)) { 
+                session.setAttribute("username",username);
+                forward = GetForward(account.Role);
+            }
         }
-        
         RequestDispatcher dispatcher = request.getRequestDispatcher(forward);  
         dispatcher.forward(request, response); 
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-    private String GetForward(String username){
-        
-        // Controllo la role dell'username salvato in sessione
-        String role = GetRole(username);
+    private String GetForward(String role){
         switch(role){
             case "doctor":
                 return "jsp/doctor-home.jsp";
@@ -98,27 +87,5 @@ public class AccessController extends HttpServlet {
             default:
                 return "jsp/access.jsp";
         }
-    }
-    
-    private String GetRole(String username){
-        Account account = null;
-        if(username.equals("luca")){
-            account = new Account();
-            account.Username = "luca";
-            account.Role = "doctor";
-        }
-        return account.Role;
-    }
-    
-    private boolean ExistsAccount(String username, String password){
-        if(username.equals("luca") && password.equals("123456")){
-            return true;
-        }
-        return false;
-    }
-    
-    private class Account{
-        public String Username;
-        public String Role;
-    }
+    } 
 }

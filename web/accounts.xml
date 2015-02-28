@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<accounts>
+  <account>
+    <name>Luca</name>
+    <surname>Guerra</surname>
+    <username>luca</username>
+    <password>123456</password>
+    <type>doctor</type>
+  </account>
+  <account>
+    <name>Marco</name>
+    <surname>Franceschini</surname>
+    <username>marco</username>
+    <password>123456</password>
+    <type>patient</type>
+  </account>
+</accounts>
