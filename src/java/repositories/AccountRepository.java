@@ -2,6 +2,7 @@ package repositories;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import javax.servlet.ServletContext;
 import models.Account;
 import org.w3c.dom.Element;
@@ -16,9 +17,12 @@ public class AccountRepository extends BaseRepository {
     
     // Fornisce l'account richiesto
     public Account GetAccount(String username){
-        Account account = null;
-        account = GetAccounts().stream().filter(a -> a.Username.equals(username)).reduce(account, null);
-        return account;
+        
+        Optional<Account> account = GetAccounts().stream().filter(a -> a.Username.equals(username)).findFirst();
+        if(account.isPresent())
+            return account.get();
+        
+        return null;
     }
     
     public List<Account> GetAccounts(){
@@ -43,7 +47,7 @@ public class AccountRepository extends BaseRepository {
         account.Surname     = e.getElementsByTagName("surname").item(0).getTextContent();
         account.Username    = e.getElementsByTagName("username").item(0).getTextContent();
         account.Password    = e.getElementsByTagName("password").item(0).getTextContent();
-        account.Role        = e.getElementsByTagName("role").item(0).getTextContent();
+        account.Role        = e.getElementsByTagName("rule").item(0).getTextContent();
         return account;
     }
 }

@@ -15,7 +15,7 @@ import repositories.AccountRepository;
 @WebServlet(name = "AccessController", urlPatterns = {"/AccessController"})
 public class AccessController extends HttpServlet {
 
-    private final AccountRepository rep = new AccountRepository(getServletContext());
+    private AccountRepository rep = null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -26,6 +26,7 @@ public class AccessController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        rep = new AccountRepository(getServletContext());
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,6 +64,7 @@ public class AccessController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        rep = new AccountRepository(getServletContext());
         String username = request.getParameter("username"); 
         String password = request.getParameter("password"); 
         HttpSession session = request.getSession();

@@ -5,13 +5,13 @@
     <surname>Guerra</surname>
     <username>luca</username>
     <password>123456</password>
-    <type>doctor</type>
+    <rule>doctor</rule>
   </account>
   <account>
     <name>Marco</name>
     <surname>Franceschini</surname>
     <username>marco</username>
     <password>123456</password>
-    <type>patient</type>
+    <rule>patient</rule>
   </account>
 </accounts>

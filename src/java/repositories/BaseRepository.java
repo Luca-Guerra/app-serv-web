@@ -9,15 +9,13 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 public class BaseRepository {
-    private ServletContext _context;
     protected Document doc;
     
     public BaseRepository(ServletContext context, String fileName){
         try {
-            _context = context;
             ManageXML xml = new ManageXML();
-            String db_path = context.getRealPath("/") + fileName ;
-            doc = xml.parse(context.getResourceAsStream(db_path));
+            String db_path = context.getRealPath("/") + "\\" + fileName ;
+            doc = xml.parse(context.getResourceAsStream("/accounts.xml"));
             doc.getDocumentElement().normalize();
         } catch (IOException | SAXException | TransformerConfigurationException | ParserConfigurationException ex) {
             System.out.println("errore");
