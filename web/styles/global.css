@@ -53,6 +53,7 @@ body p{
 {
     margin: 30px auto;
     width: 40%;
+    min-width: 200px;
     font-size: 2em;
 }
 
@@ -93,4 +94,44 @@ body p{
 {
     position: relative;
     top: -2px;
+}
+
+#container
+{
+    width: 50%;
+    margin: 10px auto;
+    font-size: 2em;
+    border-left:2px solid black;
+    border-right:2px solid black;
+    padding: 40px;
+}
+
+#container .row
+{
+    width: 100%;
+    height: auto;
+}
+
+#container .me
+{
+    margin-bottom: 5px;
+    max-width: 400px;
+    min-width: 60px;
+    padding:10px;
+    background: #A0E2A8;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left:60%;
+}
+
+#container .their
+{
+    max-width: 400px;
+    min-width: 60px;
+    margin-bottom: 5px;
+    margin-right: 60%;
+    padding:10px;
+    background: rgb(255, 221, 221);
+    border: 2px solid black;
+    border-radius: 5px;
 }
