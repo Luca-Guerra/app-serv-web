@@ -15,6 +15,15 @@ body p{
     width: 100%;
 }
 
+.header span
+{
+    color: white;
+    font-size: 2em;
+    width: 150px;
+    float: left;
+    margin-top: 26px;
+}
+
 .header div
 {
     width: 50px;
