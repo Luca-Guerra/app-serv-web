@@ -17,7 +17,7 @@ public class AccountRepository extends BaseRepository {
     
     // Fornisce l'account richiesto
     public Account GetAccount(String username){
-        
+        // Cerco l'account richiesto
         Optional<Account> account = GetAccounts().stream().filter(a -> a.Username.equals(username)).findFirst();
         if(account.isPresent())
             return account.get();
@@ -27,14 +27,14 @@ public class AccountRepository extends BaseRepository {
     
     public List<Account> GetAccounts(){
         List<Account> accounts = new ArrayList<>();
-    
+        // Ottengo tutti i nodi account
         NodeList nodeList = doc.getElementsByTagName("account");
         for (int temp = 0; temp < nodeList.getLength(); temp++) {
-
             Node nNode = nodeList.item(temp);
 
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
+                // Prendo l'elemento account e lo codifico nel modello Account
                 accounts.add(ShapeAccount(eElement));
             }
         }

@@ -14,8 +14,8 @@ public class BaseRepository {
     public BaseRepository(ServletContext context, String fileName){
         try {
             ManageXML xml = new ManageXML();
-            String db_path = context.getRealPath("/") + "\\" + fileName ;
-            doc = xml.parse(context.getResourceAsStream("/accounts.xml"));
+            // ottengo il Document del file xml
+            doc = xml.parse(context.getResourceAsStream("/" + fileName));
             doc.getDocumentElement().normalize();
         } catch (IOException | SAXException | TransformerConfigurationException | ParserConfigurationException ex) {
             System.out.println("errore");

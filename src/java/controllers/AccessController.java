@@ -26,7 +26,6 @@ public class AccessController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        rep = new AccountRepository(getServletContext());
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,11 +63,14 @@ public class AccessController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Istanzio il repository
         rep = new AccountRepository(getServletContext());
         String username = request.getParameter("username"); 
         String password = request.getParameter("password"); 
         HttpSession session = request.getSession();
+        // Setto il forward di default
         String forward = "jsp/access.jsp";
+        // Se sono state passate le credenziali di accesso e queste corrispondono con un account presente nel file accounts.xml redirigi verso l'area aopportuna
         if(username != null && password != null){
             Account account = rep.GetAccount(username);
             if(account != null && account.Password.equals(password)) { 
@@ -77,7 +79,7 @@ public class AccessController extends HttpServlet {
             }
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher(forward);  
-        dispatcher.forward(request, response); 
+        dispatcher.forward(request, response);
     }
 
     private String GetForward(String role){
