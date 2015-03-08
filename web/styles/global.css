@@ -2,6 +2,7 @@ body
 {
     margin:0px;
     font: normal 12px/20px 'Open Sans',sans-serif;
+    text-align: center;
 }
 
 body p{
@@ -96,23 +97,13 @@ body p{
     top: -2px;
 }
 
-#container
-{
-    width: 50%;
-    margin: 10px auto;
-    font-size: 2em;
-    border-left:2px solid black;
-    border-right:2px solid black;
-    padding: 40px;
-}
-
-#container .row
+.row
 {
     width: 100%;
     height: auto;
 }
 
-#container .me
+.me
 {
     margin-bottom: 5px;
     max-width: 400px;
@@ -121,15 +112,14 @@ body p{
     background: #A0E2A8;
     border: 2px solid black;
     border-radius: 5px;
-    margin-left:60%;
+    margin-left:78%;
 }
 
-#container .their
+.their
 {
     max-width: 400px;
     min-width: 60px;
     margin-bottom: 5px;
-    margin-right: 60%;
     padding:10px;
     background: rgb(255, 221, 221);
     border: 2px solid black;
