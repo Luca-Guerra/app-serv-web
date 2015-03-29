@@ -2,7 +2,6 @@ body
 {
     margin:0px;
     font: normal 12px/20px 'Open Sans',sans-serif;
-    text-align: center;
 }
 
 body p{
@@ -11,7 +10,7 @@ body p{
 
 .header
 {
-    background-color: #028112;
+    background-color: rgb(3, 81, 88);
     overflow: auto;
     width: 100%;
 }
@@ -19,19 +18,19 @@ body p{
 .header span
 {
     color: white;
-    font-size: 2em;
-    width: 150px;
+    font-size: 3em;
+    width: 200px;
     float: left;
     margin-top: 26px;
 }
 
 .header div
 {
-    width: 50px;
-    height: 50px;
-    padding:8px;
+    width: 150px; 
+    padding:16px;
+    text-align:center;
     display:inline-block;
-    font-size: 4em;
+    font-size: 3em;
     border: 1px solid;
     border-radius:5px;
     background-color: white;
@@ -41,7 +40,7 @@ body p{
 
 .header div img
 {
-    width:50px;
+    width: 50px;
     height: 50px;
 }
 
@@ -52,7 +51,7 @@ body p{
 
 #dashboard
 {
-    margin: 30px auto;
+    margin: 100px auto;
     width: 40%;
     min-width: 200px;
     font-size: 2em;
@@ -62,7 +61,7 @@ body p{
 {
     border-radius: 5px;
     padding: 5px;
-    background-color: #028112;
+    background-color: rgb(26, 157, 152);
     margin-bottom: 30px;
     height:50px;
     color:white;
@@ -99,29 +98,48 @@ body p{
 
 .row
 {
-    width: 100%;
+    width: 50%;
     height: auto;
+    margin:0 auto;
 }
 
-.me
-{
-    margin-bottom: 5px;
+.box{
     max-width: 400px;
     min-width: 60px;
     padding:10px;
-    background: #A0E2A8;
-    border: 2px solid black;
-    border-radius: 5px;
-    margin-left:78%;
+    border-radius: 4px;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    font-size:2em;
+}
+.me
+{
+    background: rgb(245,245,220);
+    margin-left:58%;
 }
 
 .their
 {
-    max-width: 400px;
-    min-width: 60px;
-    margin-bottom: 5px;
-    padding:10px;
-    background: rgb(255, 221, 221);
-    border: 2px solid black;
-    border-radius: 5px;
+    background: rgb(240,255,240);
+}
+
+.send-msg-box
+{
+    position: fixed;
+    bottom: 0px;
+    left:0px;
+    width: 100%;
+    padding: 25px;
+    background-color: rgb(3, 81, 88);
+}
+
+.send-msg-box div
+{
+    margin:0 auto;
+    width:40%;
+}
+
+.send-msg-box div textarea
+{
+    width: 90%;
 }

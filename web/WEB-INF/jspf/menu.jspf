@@ -7,7 +7,7 @@
 %>
 <div class="header">
     <span>Salve <% out.println(session.getAttribute("username").toString()); %></span>
-    <div><a href="AccessController"><img alt="Esci" src="/public_webapp/images/shutdown.png" /></a></div>
-    <div><img alt="Agenda" src="/public_webapp/images/agend.png" /></div>
+    <div><a href="AccessController">Esci</a></div>
+    <div>Agenda</div>
 </div>
 

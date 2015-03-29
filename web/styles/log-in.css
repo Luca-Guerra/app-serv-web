@@ -12,7 +12,7 @@ h1
 {
     height:50px;
     width: 100%;
-    background-color:#028112;
+    background-color:rgb(3, 81, 88);
     font-size: 4em;
     color:white;
     margin-bottom:200px;
@@ -28,7 +28,7 @@ input
 {
     width:30%;
     min-width: 200px;
-    border: 2px solid #028112;
+    border: 2px solid rgb(3, 81, 88);
     border-radius: 8px;
     margin: 0 auto; 
     padding: 10px;
@@ -52,5 +52,5 @@ input
 
 .log-in .btn:hover
 {
-    background-color: #028112;
+    background-color: rgb(65, 141, 140);
 }

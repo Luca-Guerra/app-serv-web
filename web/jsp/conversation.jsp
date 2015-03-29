@@ -11,78 +11,85 @@
         
         <a href="/">Vedi altro</a>
         <div class="row">
-            <div class="their">Salve dottore come va?</div>
+            <div class="box their">Salve dottore come va?</div>
         </div>
         <div class="row">
-            <div class="me">Salve tutto bene lei?</div>
+            <div class="box me">Salve tutto bene lei?</div>
         </div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-        <div class="row"><div class="their">Salve dottore come va?</div></div>
-        <div class="row"><div class="me">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="me">Salve dottore come va?</div></div>
-        <div class="row"><div class="their">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="me">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="their">Salve dottore come va?</div></div>
-        <div class="row"><div class="me">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="me">Salve dottore come va?</div></div>
-        <div class="row"><div class="their">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+        <div class="row"><div class="box their">Salve dottore come va?</div></div>
+        <div class="row"><div class="box me">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+                    <div class="row"><div class="box me">Salve dottore come va?</div></div>
+        <div class="row"><div class="box their">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box me">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+                    <div class="row"><div class="box their">Salve dottore come va?</div></div>
+        <div class="row"><div class="box me">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+                    <div class="row"><div class="box me">Salve dottore come va?</div></div>
+        <div class="row"><div class="box their">Salve tutto bene lei?</div></div>
         <div class="row">
-            <div class="their">Salve dottore come va?</div>
-        </div>
-        <div class="row">
-            <div class="me">Salve tutto bene lei?</div>
-        </div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-        <div class="row"><div class="their">Salve dottore come va?</div></div>
-        <div class="row"><div class="me">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="me">Salve dottore come va?</div></div>
-        <div class="row"><div class="their">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="me">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="their">Salve dottore come va?</div></div>
-        <div class="row"><div class="me">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="me">Salve dottore come va?</div></div>
-        <div class="row"><div class="their">Salve tutto bene lei?</div></div>
-        <div class="row">
-            <div class="their">Salve dottore come va?</div>
+            <div class="box their">Salve dottore come va?</div>
         </div>
         <div class="row">
-            <div class="me">Salve tutto bene lei?</div>
+            <div class="box me">Salve tutto bene lei?</div>
         </div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-        <div class="row"><div class="their">Salve dottore come va?</div></div>
-        <div class="row"><div class="me">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="me">Salve dottore come va?</div></div>
-        <div class="row"><div class="their">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="me">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="their">Salve dottore come va?</div></div>
-        <div class="row"><div class="me">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="me">Salve dottore come va?</div></div>
-        <div class="row"><div class="their">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+        <div class="row"><div class="box their">Salve dottore come va?</div></div>
+        <div class="row"><div class="box me">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+                    <div class="row"><div class="box me">Salve dottore come va?</div></div>
+        <div class="row"><div class="box their">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box me">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+                    <div class="row"><div class="box their">Salve dottore come va?</div></div>
+        <div class="row"><div class="box me">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+                    <div class="row"><div class="box me">Salve dottore come va?</div></div>
+        <div class="row"><div class="box their">Salve tutto bene lei?</div></div>
         <div class="row">
-            <div class="their">Salve dottore come va?</div>
+            <div class="box their">Salve dottore come va?</div>
         </div>
         <div class="row">
-            <div class="me">Salve tutto bene lei?</div>
+            <div class="box me">Salve tutto bene lei?</div>
         </div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-        <div class="row"><div class="their">Salve dottore come va?</div></div>
-        <div class="row"><div class="me">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="me">Salve dottore come va?</div></div>
-        <div class="row"><div class="their">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="me">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="their">Salve dottore come va?</div></div>
-        <div class="row"><div class="me">Salve tutto bene lei?</div></div>
-        <div class="row"><div class="their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
-                    <div class="row"><div class="me">Salve dottore come va?</div></div>
-        <div class="row"><div class="their">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+        <div class="row"><div class="box their">Salve dottore come va?</div></div>
+        <div class="row"><div class="box me">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+        <div class="row"><div class="box me">Salve dottore come va?</div></div>
+        <div class="row"><div class="box their">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box me">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+        <div class="row"><div class="box their">Salve dottore come va?</div></div>
+        <div class="row"><div class="box me">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+        <div class="row"><div class="box me">Salve dottore come va?</div></div>
+        <div class="row"><div class="box their">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Salve dottore come va?</div></div>
+        <div class="row"><div class="box me">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+        <div class="row"><div class="box their">Salve dottore come va?</div></div>
+        <div class="row"><div class="box me">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+        <div class="row"><div class="box me">Salve dottore come va?</div></div>
+        <div class="row"><div class="box their">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box me">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+        <div class="row"><div class="box their">Salve dottore come va?</div></div>
+        <div class="row"><div class="box me">Salve tutto bene lei?</div></div>
+        <div class="row"><div class="box their">Non saprei ho una accetta piantata in testa cosa mi consiglia?</div></div>
+        <div class="row"><div class="box me">Salve dottore come va?</div></div>
+        <div class="row"><div class="box their">Salve tutto bene lei?</div></div>
+        
+        
+        <div class="send-msg-box">
+            <div>
+                <textarea></textarea>
+                <input type="submit" value="invia" />
+            </div>
+        </div>
+        
+        
         <script type="text/javascript">
+            // Apro la pagina in fondo
             window.onload = function(){
                 var body = document.body, html = document.documentElement;
                 // Ottengo l'altezza della pagina
