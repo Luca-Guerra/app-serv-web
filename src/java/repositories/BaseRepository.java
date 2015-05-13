@@ -1,5 +1,6 @@
 package repositories;
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletContext;
 import javax.xml.parsers.ParserConfigurationException;

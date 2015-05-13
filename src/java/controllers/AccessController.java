@@ -75,6 +75,7 @@ public class AccessController extends HttpServlet {
             Account account = rep.GetAccount(username);
             if(account != null && account.Password.equals(password)) { 
                 session.setAttribute("username",username);
+                session.setAttribute("role",account.Role);
                 forward = GetForward(account.Role);
             }
         }

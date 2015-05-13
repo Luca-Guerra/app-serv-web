@@ -8,6 +8,14 @@
     </head>
     <body>
         <%@ include file="/WEB-INF/jspf/menu.jspf" %>
-        <p>Salve paziente!</p>
+        <div class="log-in">
+            <input type="button" value="Conversazione" onclick="window.location='jsp/conversation.jsp'">
+        </div>
+        <div class="log-in">
+            <input type="button" value="Agenda" onclick="window.location='jsp/conversation.jsp'">
+        </div>
+        
+            
+        
     </body>
 </html>
