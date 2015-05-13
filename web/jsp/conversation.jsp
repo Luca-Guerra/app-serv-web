@@ -30,8 +30,8 @@
                         txt="";
                         x=xmlDoc.getElementsByTagName('message');
                         console.log("x="+x);
-                        var divConv = document.createElement("div");
-                        divConv.setAttribute("class", "conversation");
+                        var divConv = document.getElementById("conversation");
+                        //divConv.setAttribute("class", "conversation");
                         for (i=(x.length-1);i>=0;i--)
                         {
                             if(x[i].children[0].textContent == role){
@@ -91,13 +91,13 @@
             role:<%= session.getAttribute("role")%>
         </div>
         <input type="button" value="getXml" onclick="getXml()">
-        <div class="conversation"></div>
+        <div id="conversation"></div>
         <form method="post" action="/public_webapp/ConversationService">
                 <input type="text" name="patientUsername" placeholder="patientUsername" value="marco" />
                 <input type="text" name="index" placeholder="index" value="0"/>
                 <input class="btn" value="getConversation" type="submit" />
         </form>
-        
+        <div class="space-msg-box"></div>
         <div class="send-msg-box">
             <div>
                 <textarea></textarea>
