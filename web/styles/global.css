@@ -145,12 +145,12 @@ body p{
     width:40%;
 }
 
-.space-msg-box div
-{
-    margin:0 auto;
-    width:40%;
-}
 .send-msg-box div textarea
 {
     width: 90%;
+}
+
+#conversation
+{
+    margin-bottom: 100px;
 }
