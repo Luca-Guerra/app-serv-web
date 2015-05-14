@@ -5,8 +5,12 @@
  */
 package repositories;
 
+import java.io.IOException;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
+import javax.xml.transform.TransformerException;
 import models.Account;
 import models.Conversation;
 import models.Message;
@@ -37,6 +41,30 @@ public class ConversationRepository extends BaseRepository {
             
         }
         return conv;
+    }
+    
+    public void addXMLMessage(String sender, String receiver, String text, String date){
+        Element message= doc.createElement("message");
+        Element senderEl = doc.createElement("sender");
+        senderEl.appendChild(doc.createTextNode(sender));
+        Element receiverEl = doc.createElement("receiver");
+        receiverEl.appendChild(doc.createTextNode(receiver));
+        Element textEl = doc.createElement("text");
+        textEl.appendChild(doc.createTextNode(text));
+        Element dateEl = doc.createElement("dateTime");
+        dateEl.appendChild(doc.createTextNode(date));
+        message.appendChild(senderEl);
+        message.appendChild(receiverEl);
+        message.appendChild(textEl);
+        message.appendChild(dateEl);
+        doc.getElementsByTagName("messages").item(0).appendChild(message);
+        try {
+            writeRepository();
+        } catch (TransformerException ex) {
+            Logger.getLogger(ConversationRepository.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ConversationRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private Message shapeMessage(Element e){

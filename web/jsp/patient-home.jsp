@@ -3,17 +3,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="/public_webapp/styles/global.css" media="screen" />
+        <link rel="stylesheet" href="/public_webapp/styles/patientHome.css" media="screen" />
         <title>CRM Hospital</title>
     </head>
     <body>
         <%@ include file="/WEB-INF/jspf/menu.jspf" %>
-        <div class="log-in">
-            <input type="button" value="Conversazione" onclick="window.location='jsp/conversation.jsp'">
+        <div class="patientHome">
+        <div>
+            <form method="post" action="jsp/conversation.jsp">
+                <input class="btn" value="Msg" type="submit" />
+            </form>
         </div>
-        <div class="log-in">
-            <input type="button" value="Agenda" onclick="window.location='jsp/conversation.jsp'">
+        <div>
+            <form method="post" action="/public_webapp/AgendaService">
+                <input class="btn" value="Agenda" type="submit" />
+            </form>
         </div>
+            </div>
         
             
         
