@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" href="/public_webapp/styles/global.css" media="screen" />
+        
         <title>CRM Hospital (Medico)</title>
         
         <script type="text/javascript">
@@ -13,8 +14,9 @@
             var role;
             var oldConv;
             var first = true;
+            console.log("patientUsername=<%= session.getAttribute("patientUsername")%>")
             function getXml(){
-                patientUsername = "<%= session.getAttribute("username")%>";
+                patientUsername = "<%= session.getAttribute("patientUsername")%>";
                 role = "<%= session.getAttribute("role")%>";
                 xmlHttp = new XMLHttpRequest();
                 xmlHttp.open("POST","../ConversationService",true)
@@ -105,7 +107,7 @@
                 <form method="post" action="/public_webapp/SendMessage">
                     <input type="text" name="message"/>
                     <input type="hidden" name="role" value="<%= session.getAttribute("role")%>"/>
-                    <input type="hidden" name="patientUsername" value="<%= session.getAttribute("username")%>"/>
+                    <input type="hidden" name="patientUsername" value="<%= session.getAttribute("patientUsername")%>"/>
                     <input class="btn" value="Invia" type="submit" />
                 </form>
         </div>

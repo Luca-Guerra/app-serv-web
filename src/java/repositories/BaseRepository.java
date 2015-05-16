@@ -1,6 +1,7 @@
 package repositories;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,16 +18,17 @@ public class BaseRepository {
     protected Document doc;
     ManageXML xml;
     ServletContext context;
-    String fileName;
+    String fileName;    
     public BaseRepository(ServletContext context, String fileName){
         try {
             this.context=context;
             this.fileName = fileName;
             xml = new ManageXML();
+            System.out.println("CONTEXT="+context.getContextPath()+"/"+fileName);
             // ottengo il Document del file xml
-            System.out.println(context.getContextPath()+"/"+fileName);
-            
+            context.getResourceAsStream("/"+fileName).reset();
             doc = xml.parse(context.getResourceAsStream("/" + fileName));
+            context.getResourceAsStream("/"+fileName).close();
             doc.getDocumentElement().normalize();
         } catch (IOException | SAXException | TransformerConfigurationException | ParserConfigurationException ex) {
             System.out.println("errore:"+ex.getMessage());
@@ -34,14 +36,12 @@ public class BaseRepository {
     }
     
     public void writeRepository() throws TransformerException, IOException{
-        String filePath = context.getRealPath(fileName);
+        String filePath;
+        filePath = context.getRealPath(fileName);
         OutputStream os = new FileOutputStream(filePath);
-        System.out.println("prima");
         xml.transform(os, doc);
-        System.out.println("dopo");
         os.flush();
         os.close(); 
-        System.out.println("fine");
     }
     
 }

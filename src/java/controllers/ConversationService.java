@@ -7,6 +7,7 @@ package controllers;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -22,7 +23,9 @@ import javax.xml.transform.TransformerException;
 import lib.ManageXML;
 import models.Account;
 import models.Conversation;
+import models.Doctor;
 import models.Message;
+import models.Patient;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import repositories.AccountRepository;
@@ -48,13 +51,27 @@ public class ConversationService extends HttpServlet{
                 // Istanzio il repository
         try {
             System.out.println("RICHIESTA EFFETTUATA");
-            String user = request.getParameter("patientUsername");
+            String patientUser = request.getParameter("patientUsername");
             String textIndex = request.getParameter("index");
-            System.out.println("PatientUsername="+user);
+            System.out.println("PatientUsername="+patientUser);
             System.out.println("index="+textIndex);
             HttpSession session = request.getSession();
-            rep = new ConversationRepository(getServletContext(),user);
-
+            String user = (String)session.getAttribute("username");
+            rep = new ConversationRepository(getServletContext(),patientUser);
+            System.out.println("servlet context="+getServletContext().getContextPath());
+            AccountRepository accounts = new AccountRepository(getServletContext());
+            System.out.println("user="+user);
+            Account userAccount = accounts.GetAccount(user);
+            if(userAccount.getRole().equals("patient")){
+                ((Patient)accounts.GetAccount(user)).setLastVisit(0);
+            }else{
+                for(int i = 0; i<((Doctor)accounts.GetAccount(user)).getPatients().size();i++){
+                    if(((Doctor)accounts.GetAccount(user)).getPatients().get(i).equals(patientUser)){
+                        ((Doctor)accounts.GetAccount(user)).getLastVisities().set(i, 0);
+                    }
+                }
+            }
+            accounts.writeAccounts(accounts.GetAccounts());
             // Setto il forward di default
             Conversation conv = rep.GetConversation();
             int index = Integer.parseInt(textIndex);
@@ -87,7 +104,6 @@ public class ConversationService extends HttpServlet{
                 Element dateTime = answer.createElement("dateTime");
                 dateTime.setTextContent(indexMessage.getDateTime());
                 msg.appendChild(dateTime);
-
                 msgs.appendChild(msg);
             }
             OutputStream os = response.getOutputStream();

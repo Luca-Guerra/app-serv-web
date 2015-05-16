@@ -5,13 +5,53 @@
     <surname>Guerra</surname>
     <username>luca</username>
     <password>123456</password>
-    <rule>doctor</rule>
+    <role>doctor</role>
+    <patients>
+        <patient>
+            <name>marco</name>
+            <lastVisit>1</lastVisit>
+        </patient>
+        <patient>
+            <name>fabio</name>
+            <lastVisit>2</lastVisit>
+        </patient>
+        <patient>
+            <name>riccardo</name>
+            <lastVisit>3</lastVisit>
+        </patient>
+    </patients>
   </account>
   <account>
     <name>Marco</name>
     <surname>Franceschini</surname>
     <username>marco</username>
     <password>123456</password>
-    <rule>patient</rule>
+    <role>patient</role>
+    <doctor>
+        <name>luca</name>
+        <lastVisit>3</lastVisit>
+    </doctor>
+  </account>
+  <account>
+    <name>Fabio</name>
+    <surname>Consalici</surname>
+    <username>fabio</username>
+    <password>123456</password>
+    <role>patient</role>
+    <doctor>
+        <name>luca</name>
+        <lastVisit>3</lastVisit>
+    </doctor>
+  </account>
+  <account>
+    <name>Riccardo</name>
+    <surname>Drudi</surname>
+    <username>riccardo</username>
+    <password>123456</password>
+    <role>patient</role>
+    <doctor>
+        <name>luca</name>
+        <lastVisit>3</lastVisit>
+    </doctor>
   </account>
 </accounts>

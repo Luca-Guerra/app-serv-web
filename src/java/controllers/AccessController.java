@@ -73,10 +73,10 @@ public class AccessController extends HttpServlet {
         // Se sono state passate le credenziali di accesso e queste corrispondono con un account presente nel file accounts.xml redirigi verso l'area aopportuna
         if(username != null && password != null){
             Account account = rep.GetAccount(username);
-            if(account != null && account.Password.equals(password)) { 
+            if(account != null && account.getPassword().equals(password)) { 
                 session.setAttribute("username",username);
-                session.setAttribute("role",account.Role);
-                forward = GetForward(account.Role);
+                session.setAttribute("role",account.getRole());
+                forward = GetForward(account.getRole());
             }
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher(forward);  
