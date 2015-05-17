@@ -16,6 +16,9 @@
                 <input type="password" name="password" placeholder="password" />
                 <input class="btn" value="Accedi" type="submit" />
             </form>
+            <form method="post" action="../../../public_webapp/jsp/registration.jsp">
+                <input class="btn" value="registrati" type="submit" />
+            </form>
         </div>
     </body>
 </html>

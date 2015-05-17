@@ -4,6 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" href="/public_webapp/styles/global.css" media="screen" />
+        <link rel="stylesheet" href="/public_webapp/styles/conversation.css" media="screen" />
         
         <title>CRM Hospital (Medico)</title>
         
@@ -13,11 +14,18 @@
             var patientUsername;
             var role;
             var oldConv;
+            //Caso di caricamento pagina
+            //Quando diventa false vuol dire che sto caricando i messaggi vecchi
             var first = true;
             console.log("patientUsername=<%= session.getAttribute("patientUsername")%>")
             function getXml(){
                 patientUsername = "<%= session.getAttribute("patientUsername")%>";
                 role = "<%= session.getAttribute("role")%>";
+                if(role=="patient"){
+                    patientUsername = "<%= session.getAttribute("username")%>";
+                }else{
+                    patientUsername = "<%= session.getAttribute("patientUsername")%>";
+                }
                 xmlHttp = new XMLHttpRequest();
                 xmlHttp.open("POST","../ConversationService",true)
                 xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -32,6 +40,7 @@
                         txt="";
                         x=xmlDoc.getElementsByTagName('message');
                         console.log("x="+x);
+                        //Creo il Div con tutta la conversazione
                         var divConv = document.getElementById("conversation");
                         for (i=0;i<x.length;i++)
                         {
@@ -80,6 +89,7 @@
                         }
                         document.body.appendChild(divConv);
                         if(first){
+                            //Nel caso di primo caricamento
                             var body = document.body, html = document.documentElement;
                             // Ottengo l'altezza della pagina
                             var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
@@ -92,6 +102,7 @@
                 console.log("nome paziente="+patientUsername);
                 var parameter = "patientUsername="+patientUsername+"&"+"index=0"
                 console.log(parameter);
+                //Mando la richiesta con il nome del paziente e l'indice che mi rimanda gli 10 ultimi messaggi
                 xmlHttp.send("patientUsername="+patientUsername+"&"+"index="+lastIndex);
                 lastIndex+=9;
                 console.log("richiesta spedita")

@@ -14,7 +14,7 @@
         <script type="text/javascript">
             function goToConv(user){
                 xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("POST","SetSession",true)
+                xmlHttp.open("POST","SetSession",true);
                 xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlHttp.onreadystatechange=function(){
                     if(xmlHttp.readyState==4 && xmlHttp.status == 200){

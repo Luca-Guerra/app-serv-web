@@ -26,7 +26,7 @@ public class SetSession extends HttpServlet{
         String value = request.getParameter("value");
         HttpSession session = request.getSession();
         session.setAttribute(attribute, value);
-        String forward = "jsp/conversation.jsp";
-        response.sendRedirect(request.getContextPath() +"/"+ forward);
+        //String forward = "jsp/conversation.jsp";
+        //response.sendRedirect(request.getContextPath() +"/"+ forward);
     }
 }

@@ -5,12 +5,15 @@
  */
 package controllers;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -106,9 +109,13 @@ public class ConversationService extends HttpServlet{
                 msg.appendChild(dateTime);
                 msgs.appendChild(msg);
             }
+            ServletContext servletContext = getServletContext();
+            String path = servletContext.getRealPath("/WEB-INF/conversation/");
+            path+="/bridge.xml";
             OutputStream os = response.getOutputStream();
             mngXml.transform(os, answer);
             os.close();
+            
         } catch (TransformerConfigurationException ex) {
             Logger.getLogger(ConversationService.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParserConfigurationException ex) {

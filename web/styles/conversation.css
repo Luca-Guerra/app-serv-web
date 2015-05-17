@@ -1,0 +1,24 @@
+input
+{
+    font-size: 2em;
+}
+
+
+.send-msg-box input{
+    margin:5px 4%;
+    width:90%;
+    height:40px;
+}
+
+.send-msg-box .btn
+{
+    background-color: #FFFFFF;
+    border:1px solid;
+    border-radius:5px;
+    width:100px;
+}
+
+.send-msg-box .btn:hover
+{
+    background-color: rgb(65, 141, 140);
+}

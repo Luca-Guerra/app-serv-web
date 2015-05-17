@@ -45,4 +45,13 @@ public class Doctor extends Account{
     public void setLastVisities(ArrayList<Integer> lastVisities){
         this.lastVisities=lastVisities;
     }   
+    
+    public boolean hasPatient(String patient){
+        for(int i = 0; i<patients.size();i++){
+            if(patients.get(i).equals(patient)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

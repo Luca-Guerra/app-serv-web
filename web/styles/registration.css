@@ -1,0 +1,56 @@
+body
+{
+    background-color: #FFFFFF;
+    font: normal 12px/20px 'Open Sans',sans-serif;
+    margin:0px;
+}
+h1
+{
+    font: normal 3em/20px 'Open Sans',sans-serif;
+}
+.header
+{
+    height:50px;
+    width: 100%;
+    background-color:rgb(3, 81, 88);
+    font-size: 4em;
+    color:white;
+    margin-bottom:200px;
+    line-height: 50px;
+}
+
+input
+{
+    font-size: 2em;
+}
+
+.registration
+{
+    width:30%;
+    min-width: 200px;
+    border: 2px solid rgb(3, 81, 88);
+    border-radius: 8px;
+    margin: 0 auto; 
+    padding: 10px;
+    background-color: white;
+    text-align:center;
+}
+
+.registration input{
+    margin:5px 4%;
+    width:90%;
+    height:40px;
+}
+
+.registration .btn
+{
+    background-color: #FFFFFF;
+    border:1px solid;
+    border-radius:5px;
+    width:100px;
+}
+
+.registration .btn:hover
+{
+    background-color: rgb(65, 141, 140);
+}

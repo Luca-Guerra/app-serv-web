@@ -76,6 +76,9 @@ public class AccessController extends HttpServlet {
             if(account != null && account.getPassword().equals(password)) { 
                 session.setAttribute("username",username);
                 session.setAttribute("role",account.getRole());
+                if(account.getRole().equals("patient")){
+                    session.setAttribute("patientUsername",username);
+                }
                 forward = GetForward(account.getRole());
             }
         }

@@ -88,6 +88,26 @@ public class AccountRepository extends BaseRepository {
         }
     }
     
+    public List<Doctor> getDoctors(){
+        List<Doctor> doctors = new ArrayList<>();
+        for(int i = 0; i<accounts.size();i++){
+            if(accounts.get(i).getClass().equals(Doctor.class)){
+                doctors.add((Doctor) accounts.get(i));
+            }
+        }        
+        return doctors;
+    }
+    
+    public List<Patient> getPatient(){
+        List<Patient> patients = new ArrayList<>();
+        for(int i = 0; i<accounts.size();i++){
+            if(accounts.get(i).getClass().equals(Patient.class)){
+                patients.add((Patient) accounts.get(i));
+            }
+        }        
+        return patients;
+    }
+    
     public void writeAccounts(List<Account> accountsList) throws TransformerException, IOException{
         try {
             ManageXML xml = new ManageXML();

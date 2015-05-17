@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<messages>
+    <message>
+        <sender>patient</sender>
+        <receiver>doctor</receiver>
+        <text>Salve dottore come va?</text>
+        <dateTime>domani1</dateTime>
+    </message>
+    <message>
+        <sender>doctor</sender>
+        <receiver>patient</receiver>
+        <text>Salve tutto bene lei?</text>
+        <dateTime>domani2</dateTime>
+    </message>
+    <message>    
+        <sender>patient</sender>
+        <receiver>doctor</receiver>
+        <text>Non saprei ho una accetta piantata in testa cosa mi consiglia?</text>
+        <dateTime>domani3</dateTime>
+    </message>
+    <message>
+        <sender>doctor</sender>
+        <receiver>patient</receiver>
+        <text>Lascia l'ascia ma accetta l'accetta!</text>
+        <dateTime>domani4</dateTime>
+    </message>
+    <message>
+        <sender>patient</sender>
+        <receiver>doctor</receiver>
+        <text>Salve dottore come va?</text>
+        <dateTime>domani5</dateTime>
+    </message>
+    <message>
+        <sender>doctor</sender>
+        <receiver>patient</receiver>
+        <text>Salve tutto bene lei?</text>
+        <dateTime>domani6</dateTime>
+    </message>
+    <message>
+        <sender>patient</sender>
+        <receiver>doctor</receiver>
+        <text>Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?</text>
+        <dateTime>domani7</dateTime>
+    </message>
+    <message>
+        <sender>doctor</sender>
+        <receiver>patient</receiver>
+        <text>Lascia l'ascia ma accetta l'accetta!</text>
+        <dateTime>domani8</dateTime>
+    </message>
+    <message>
+        <sender>patient</sender>
+        <receiver>doctor</receiver>
+        <text>Salve dottore come va?</text>
+        <dateTime>domani9</dateTime>
+    </message>
+    <message>
+        <sender>doctor</sender>
+        <receiver>patient</receiver>
+        <text>Salve tutto bene lei?</text>
+        <dateTime>domani10</dateTime>
+    </message>
+    <message>    
+        <sender>patient</sender>
+        <receiver>doctor</receiver>
+        <text>Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?</text>
+        <dateTime>domani11</dateTime>
+    </message>
+    <message>
+        <sender>doctor</sender>
+        <receiver>patient</receiver>
+        <text>Lascia l'ascia ma accetta l'accetta!</text>
+        <dateTime>domani12</dateTime>
+    </message>
+    <message>
+        <sender>patient</sender>
+        <receiver>doctor</receiver>
+        <text>Salve dottore come va?</text>
+        <dateTime>domani13</dateTime>
+    </message>
+    <message>
+        <sender>doctor</sender>
+        <receiver>patient</receiver>
+        <text>Salve tutto bene lei?</text>
+        <dateTime>domani14</dateTime>
+    </message>
+    <message>
+        <sender>patient</sender>
+        <receiver>doctor</receiver>
+        <text>Non saprei ho una accetta piantata in testa cosa mi consiglia?Non saprei ho una accetta piantata in testa cosa mi consiglia?</text>
+        <dateTime>domani15</dateTime>
+    </message>
+    <message>
+        <sender>doctor</sender>
+        <receiver>patient</receiver>
+        <text>Lascia l'ascia ma accetta l'accetta!</text>
+        <dateTime>domani16</dateTime>
+    </message>
+</messages>
