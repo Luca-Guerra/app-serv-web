@@ -28,7 +28,7 @@ public class BaseRepository {
             // ottengo il Document del file xml
             //context.getResourceAsStream("/"+fileName).reset();
             doc = xml.parse(context.getResourceAsStream("/" + fileName));
-            //context.getResourceAsStream("/"+fileName).close();
+            context.getResourceAsStream("/"+fileName).close();
             doc.getDocumentElement().normalize();
         } catch (IOException | SAXException | TransformerConfigurationException | ParserConfigurationException ex) {
             System.out.println("errore:"+ex.getMessage());
@@ -40,7 +40,6 @@ public class BaseRepository {
         filePath = context.getRealPath(fileName);
         OutputStream os = new FileOutputStream(filePath);
         xml.transform(os, doc);
-        os.flush();
         os.close(); 
     }
     

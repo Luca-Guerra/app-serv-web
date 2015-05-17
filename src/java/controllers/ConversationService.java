@@ -60,7 +60,6 @@ public class ConversationService extends HttpServlet{
             System.out.println("index="+textIndex);
             HttpSession session = request.getSession();
             String user = (String)session.getAttribute("username");
-            rep = new ConversationRepository(getServletContext(),patientUser);
             System.out.println("servlet context="+getServletContext().getContextPath());
             AccountRepository accounts = new AccountRepository(getServletContext());
             System.out.println("user="+user);
@@ -76,6 +75,7 @@ public class ConversationService extends HttpServlet{
             }
             accounts.writeAccounts(accounts.GetAccounts());
             // Setto il forward di default
+            rep = new ConversationRepository(getServletContext(),patientUser);
             Conversation conv = rep.GetConversation();
             int index = Integer.parseInt(textIndex);
 
@@ -103,15 +103,15 @@ public class ConversationService extends HttpServlet{
                 Element text = answer.createElement("text");
                 text.setTextContent(indexMessage.getText());
                 msg.appendChild(text);
+                System.out.println("TESTO="+indexMessage.getText());
                 //date
                 Element dateTime = answer.createElement("dateTime");
                 dateTime.setTextContent(indexMessage.getDateTime());
                 msg.appendChild(dateTime);
                 msgs.appendChild(msg);
             }
+            System.out.println(answer);
             ServletContext servletContext = getServletContext();
-            String path = servletContext.getRealPath("/WEB-INF/conversation/");
-            path+="/bridge.xml";
             OutputStream os = response.getOutputStream();
             mngXml.transform(os, answer);
             os.close();

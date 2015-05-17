@@ -96,7 +96,7 @@ public class SendMessage extends HttpServlet{
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
             rep.addXMLMessage(sendRole, receiverRole, message, date.toString());
-            System.out.println("data="+date);
+            System.out.println("SEND REDIRECT");
             response.sendRedirect(request.getContextPath() +"/"+ forward);
         } catch (TransformerException ex) {
             Logger.getLogger(SendMessage.class.getName()).log(Level.SEVERE, null, ex);
