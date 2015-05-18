@@ -10,7 +10,7 @@
         <%@ include file="/WEB-INF/jspf/menu.jspf" %>
         <div class="patientHome">
         <div>
-            <form method="post" action="jsp/conversation.jsp">
+            <form method="post" action="../../../public_webapp/jsp/conversation.jsp">
                 <input class="btn" value="Msg" type="submit" />
             </form>
         </div>

@@ -55,13 +55,9 @@ public class ConversationService extends HttpServlet{
             System.out.println("RICHIESTA EFFETTUATA CONVERSATION SERVICE");
             String patientUser = request.getParameter("patientUsername");
             String textIndex = request.getParameter("index");
-            System.out.println("PatientUsername="+patientUser);
-            System.out.println("index="+textIndex);
             HttpSession session = request.getSession();
             String user = (String)session.getAttribute("username");
-            System.out.println("servlet context="+getServletContext().getContextPath());
             AccountRepository accounts = new AccountRepository(getServletContext());
-            System.out.println("user="+user);
             Account userAccount = accounts.GetAccount(user);
             if(userAccount.getRole().equals("patient")){
                 ((Patient)accounts.GetAccount(user)).setLastVisit(0);
@@ -82,8 +78,6 @@ public class ConversationService extends HttpServlet{
             Element msgs = answer.createElement("messages");
             answer.appendChild(msgs);
             for(int i=(conv.getMessageList().size()-index-1);i>(conv.getMessageList().size()-index)-10;i--){
-                System.out.println("i="+i);
-                System.out.println("limite="+(conv.getMessageList().size()-index-10));
                 if(i<0){
                     break;
                 }
@@ -97,11 +91,14 @@ public class ConversationService extends HttpServlet{
                 Element receiver = answer.createElement("receiver");
                 receiver.setTextContent(indexMessage.getReceiver());
                 msg.appendChild(receiver);
+                //type
+                Element type = answer.createElement("type");
+                type.setTextContent(indexMessage.getType());
+                msg.appendChild(type);
                 //text
                 Element text = answer.createElement("text");
                 text.setTextContent(indexMessage.getText());
                 msg.appendChild(text);
-                System.out.println("TESTO="+indexMessage.getText());
                 //date
                 Element dateTime = answer.createElement("dateTime");
                 dateTime.setTextContent(indexMessage.getDateTime());

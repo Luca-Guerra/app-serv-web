@@ -25,7 +25,7 @@ import org.w3c.dom.NodeList;
 public class ConversationRepository extends BaseRepository {
     
     public ConversationRepository(ServletContext servletContext, String PatientUsername){
-        super(servletContext, "WEB-INF/conversation/"+PatientUsername+".xml");
+        super(servletContext, "WEB-INF/conversation/"+PatientUsername+"/"+PatientUsername+".xml");
     }
     public Conversation GetConversation(){
         // Cerco l'account richiesto
@@ -43,18 +43,27 @@ public class ConversationRepository extends BaseRepository {
         return conv;
     }
     
-    public void addXMLMessage(String sender, String receiver, String text, String date){
+    public void addXMLMessage(String sender, String receiver,String type, String text, String date){
         Element message= doc.createElement("message");
+        
         Element senderEl = doc.createElement("sender");
         senderEl.appendChild(doc.createTextNode(sender));
+        
         Element receiverEl = doc.createElement("receiver");
         receiverEl.appendChild(doc.createTextNode(receiver));
+        
+        Element typeEl = doc.createElement("type");
+        typeEl.appendChild(doc.createTextNode(type));
+        
         Element textEl = doc.createElement("text");
         textEl.appendChild(doc.createTextNode(text));
+        
         Element dateEl = doc.createElement("dateTime");
         dateEl.appendChild(doc.createTextNode(date));
+        
         message.appendChild(senderEl);
         message.appendChild(receiverEl);
+        message.appendChild(typeEl);
         message.appendChild(textEl);
         message.appendChild(dateEl);
         doc.getElementsByTagName("messages").item(0).appendChild(message);
@@ -70,9 +79,10 @@ public class ConversationRepository extends BaseRepository {
     private Message shapeMessage(Element e){
         String sender = e.getElementsByTagName("sender").item(0).getTextContent();
         String receiver = e.getElementsByTagName("receiver").item(0).getTextContent();
+        String type = e.getElementsByTagName("type").item(0).getTextContent();
         String text = e.getElementsByTagName("text").item(0).getTextContent();
         String dateTime = e.getElementsByTagName("dateTime").item(0).getTextContent();
-        Message msg = new Message(sender, receiver, text, dateTime);
+        Message msg = new Message(sender, receiver, type, text, dateTime);
         return msg;
     }
     

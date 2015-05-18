@@ -14,12 +14,14 @@ import java.util.Date;
 public class Message {
     private String sender;
     private String receiver;
+    private String type;
     private String text;
     private String dateTime;
     
-    public Message(String sender, String receiver, String text, String dateTime){
+    public Message(String sender, String receiver,String type, String text, String dateTime){
         this.sender= sender;
         this.receiver = receiver;
+        this.type = type;
         this.text = text;
         this.dateTime = dateTime;
     }
@@ -30,6 +32,10 @@ public class Message {
     
     public void setReceiver(String receiver){
         this.receiver = receiver;
+    }
+    
+    public void setType(String type){
+        this.type = type;
     }
     
     public void setText(String text){
@@ -46,6 +52,10 @@ public class Message {
     
     public String getReceiver(){
         return receiver;
+    }
+    
+    public String getType(){
+        return type;
     }
     
     public String getText(){

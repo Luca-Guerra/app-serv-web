@@ -1,13 +1,13 @@
 input
 {
-    font-size: 2em;
+    font-size: 1em;
 }
 
 
 .send-msg-box input{
-    margin:5px 4%;
-    width:90%;
-    height:40px;
+    margin:2px 4%;
+    width:60%;
+    height:20px;
 }
 
 .send-msg-box .btn
@@ -15,7 +15,7 @@ input
     background-color: #FFFFFF;
     border:1px solid;
     border-radius:5px;
-    width:150px;
+    width:100px;
 }
 
 .send-msg-box .btn:hover

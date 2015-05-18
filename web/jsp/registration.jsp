@@ -140,7 +140,10 @@
                         //String path=this.getServletContext().getContextPath()+"/WEB-INF/conversation/"+username+".xml";
                         ServletContext servletContext = getServletContext();
                         String path = servletContext.getRealPath("/WEB-INF/conversation/");
-                        path+="/"+username+".xml";
+                        String ImgPath = servletContext.getRealPath("/images/");
+                        new File(path+"/"+username).mkdir();
+                        new File(path+"/"+username).mkdir();
+                        path+="/"+username+"/"+username+".xml";
                         System.out.println("PATH="+path);
                         File f = new File(path);
                         f.createNewFile();

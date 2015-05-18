@@ -44,24 +44,42 @@
                         var divConv = document.getElementById("conversation");
                         for (i=0;i<x.length;i++)
                         {
-                            if(x[i].children[0].textContent == role){
+                            console.log("type="+x[i].childNodes[1].textContent);
+                            if(x[i].childNodes[0].textContent == role){
                                 var divrow = document.createElement("div");
                                 divrow.setAttribute("class", "row");
                                 var divboxme = document.createElement("div");
                                 divboxme.setAttribute("class", "box me");
                                 var divtext = document.createElement("div");
-                                var textNode = document.createTextNode(x[i].children[2].textContent);
-                                divtext.appendChild(textNode);
+                                if(x[i].childNodes[2].textContent == "text"){
+                                    var textNode = document.createTextNode(x[i].childNodes[3].textContent);
+                                    divtext.appendChild(textNode);
+                                }else if(x[i].childNodes[2].textContent == "img"){
+                                    var divimg = document.createElement("img");
+                                    divimg.setAttribute('height',200);
+                                    divimg.setAttribute('width',120);
+                                    divimg.setAttribute('src',x[i].childNodes[3].textContent);
+                                    var diva = document.createElement("a");
+                                    diva.href=x[i].childNodes[3].textContent;
+                                    diva.setAttribute('href',x[i].childNodes[3].textContent);
+                                    diva.setAttribute('target','_blank');
+                                    diva.innerHTML = "immagine";
+                                    diva.appendChild(divimg);
+                                    divtext.appendChild(diva);
+                                }else{
+                                    var textNode = document.createTextNode("il contenuto è un file");
+                                    divtext.appendChild(textNode);
+                                }
                                 var divTime = document.createElement("div");
                                 divTime.setAttribute("class","dateTime");
-                                var textTime = document.createTextNode(x[i].children[3].textContent)
+                                var textTime = document.createTextNode(x[i].childNodes[4].textContent)
                                 divTime.appendChild(textTime);
                                 divboxme.appendChild(divtext);
                                 divboxme.appendChild(divTime);
                                 divrow.appendChild(divboxme);
                                 
                                 if(divConv.childElementCount>0){
-                                    divConv.insertBefore(divrow,divConv.children[0]);
+                                    divConv.insertBefore(divrow,divConv.childNodes[0]);
                                 }else{
                                     divConv.appendChild(divrow);
                                 }
@@ -71,17 +89,34 @@
                                 var divboxme = document.createElement("div");
                                 divboxme.setAttribute("class", "box their");
                                 var divtext = document.createElement("div");
-                                var textNode = document.createTextNode(x[i].children[2].textContent);
-                                divtext.appendChild(textNode);
+                                if(x[i].childNodes[2].textContent == "text"){
+                                    var textNode = document.createTextNode(x[i].childNodes[3].textContent);
+                                    divtext.appendChild(textNode);
+                                }else if(x[i].childNodes[2].textContent == "img"){
+                                    var divimg = document.createElement("img");
+                                    divimg.setAttribute('height',200);
+                                    divimg.setAttribute('width',120);
+                                    divimg.setAttribute('src',x[i].childNodes[3].textContent);
+                                    var diva = document.createElement("a");
+                                    diva.href=x[i].childNodes[3].textContent;
+                                    diva.setAttribute('href',x[i].childNodes[3].textContent);
+                                    diva.setAttribute('target','_blank');
+                                    diva.innerHTML = "immagine";
+                                    diva.appendChild(divimg);
+                                    divtext.appendChild(diva);
+                                }else{
+                                    var textNode = document.createTextNode("il contenuto è un file");
+                                    divtext.appendChild(textNode);
+                                }
                                 var divTime = document.createElement("div");
                                 divTime.setAttribute("class","dateTime");
-                                var textTime = document.createTextNode(x[i].children[3].textContent)
+                                var textTime = document.createTextNode(x[i].childNodes[4].textContent)
                                 divTime.appendChild(textTime);
                                 divboxme.appendChild(divtext);
                                 divboxme.appendChild(divTime);
                                 divrow.appendChild(divboxme);
                                 if(divConv.childElementCount>0){
-                                    divConv.insertBefore(divrow,divConv.children[0]);
+                                    divConv.insertBefore(divrow,divConv.childNodes[0]);
                                 }else{
                                     divConv.appendChild(divrow);
                                 }
@@ -120,6 +155,12 @@
                     <input type="hidden" name="role" value="<%= session.getAttribute("role")%>"/>
                     <input type="hidden" name="patientUsername" value="<%= session.getAttribute("patientUsername")%>"/>
                     <input class="btn" value="Invia" type="submit" />
+                </form>
+                    <form method="post" action="/public_webapp/UploadServlet" enctype="multipart/form-data">
+                    <input type="file" name="file" id="file"/>
+                    <input type="hidden" name="role" value="<%= session.getAttribute("role")%>"/>
+                    <input type="hidden" name="patientUsername" value="<%= session.getAttribute("patientUsername")%>"/>
+                    <input class="btn" value="Invia File" type="submit" />
                 </form>
         </div>
         

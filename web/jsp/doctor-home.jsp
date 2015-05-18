@@ -14,11 +14,11 @@
         <script type="text/javascript">
             function goToConv(user){
                 xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("POST","SetSession",true);
+                xmlHttp.open("POST","../../../public_webapp/SetSession",true);
                 xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlHttp.onreadystatechange=function(){
                     if(xmlHttp.readyState==4 && xmlHttp.status == 200){
-                        var jspcall = "jsp/conversation.jsp";
+                        var jspcall = "../../../public_webapp/jsp/conversation.jsp";
                         window.location.href = jspcall;
                     }
                 }
