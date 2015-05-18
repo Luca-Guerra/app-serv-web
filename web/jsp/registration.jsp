@@ -95,28 +95,28 @@
                     %>
                     <div><h1>Account già presente!</h1></div>
                     <form method="post" action="../../../public_webapp/jsp/registration.jsp">
-                        <input class="btn" value="Nuovo Account" type="submit" />
+                        <input class="btn" value="Riprova" type="submit" />
                     </form>
                     <%
                 }else if(name.length()==0 || surname.length()==0){
                     %>
                     <div><h1>Inserire Nome e Cognome validi</h1></div>
                     <form method="post" action="../../../public_webapp/jsp/registration.jsp">
-                        <input class="btn" value="Nuovo Account" type="submit" />
+                        <input class="btn" value="Riprova" type="submit" />
                     </form>
                     <%
                 }else if(username.length()<4){
                     %>
                     <div><h1>Inserire username valido (4 o più caratteri)</h1></div>
                     <form method="post" action="../../../public_webapp/jsp/registration.jsp">
-                        <input class="btn" value="Nuovo Account" type="submit" />
+                        <input class="btn" value="Riprova" type="submit" />
                     </form>
                     <%
                 }else if(password.length()<4){
                     %>
                     <div><h1>Inserire password valida (4 o più caratteri)</h1></div>
                     <form method="post" action="../../../public_webapp/jsp/registration.jsp">
-                        <input class="btn" value="Nuovo Account" type="submit" />
+                        <input class="btn" value="Riprova" type="submit" />
                     </form>
                     <%
                 }else{

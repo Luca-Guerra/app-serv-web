@@ -98,6 +98,7 @@ public class SendMessage extends HttpServlet{
             rep.addXMLMessage(sendRole, receiverRole, message, date.toString());
             System.out.println("SEND REDIRECT");
             response.sendRedirect(request.getContextPath() +"/"+ forward);
+            System.out.println("HO SENDATO LA REDIRECT");
         } catch (TransformerException ex) {
             Logger.getLogger(SendMessage.class.getName()).log(Level.SEVERE, null, ex);
         }

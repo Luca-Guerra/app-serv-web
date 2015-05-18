@@ -40,7 +40,6 @@ import repositories.ConversationRepository;
  */
 @WebServlet(name = "ConversationService", urlPatterns = {"/ConversationService"})
 public class ConversationService extends HttpServlet{
-    private ConversationRepository rep;
         /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -53,7 +52,7 @@ public class ConversationService extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 // Istanzio il repository
         try {
-            System.out.println("RICHIESTA EFFETTUATA");
+            System.out.println("RICHIESTA EFFETTUATA CONVERSATION SERVICE");
             String patientUser = request.getParameter("patientUsername");
             String textIndex = request.getParameter("index");
             System.out.println("PatientUsername="+patientUser);
@@ -75,10 +74,9 @@ public class ConversationService extends HttpServlet{
             }
             accounts.writeAccounts(accounts.GetAccounts());
             // Setto il forward di default
-            rep = new ConversationRepository(getServletContext(),patientUser);
+            ConversationRepository rep = new ConversationRepository(getServletContext(),patientUser);
             Conversation conv = rep.GetConversation();
             int index = Integer.parseInt(textIndex);
-
             ManageXML mngXml= new ManageXML();
             Document answer=mngXml.newDocument();
             Element msgs = answer.createElement("messages");
