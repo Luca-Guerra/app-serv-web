@@ -63,12 +63,16 @@
                                     diva.href=x[i].childNodes[3].textContent;
                                     diva.setAttribute('href',x[i].childNodes[3].textContent);
                                     diva.setAttribute('target','_blank');
-                                    diva.innerHTML = "immagine";
+                                    //diva.innerHTML = "immagine";
                                     diva.appendChild(divimg);
                                     divtext.appendChild(diva);
                                 }else{
-                                    var textNode = document.createTextNode("il contenuto è un file");
-                                    divtext.appendChild(textNode);
+                                    var diva = document.createElement("a"); 
+                                    diva.href=x[i].childNodes[3].textContent;
+                                    diva.setAttribute('href',x[i].childNodes[3].textContent);
+                                    diva.setAttribute('target','_blank');
+                                    diva.innerHTML = "allegato";
+                                    divtext.appendChild(diva);
                                 }
                                 var divTime = document.createElement("div");
                                 divTime.setAttribute("class","dateTime");
@@ -101,12 +105,16 @@
                                     diva.href=x[i].childNodes[3].textContent;
                                     diva.setAttribute('href',x[i].childNodes[3].textContent);
                                     diva.setAttribute('target','_blank');
-                                    diva.innerHTML = "immagine";
+                                    //diva.innerHTML = "immagine";
                                     diva.appendChild(divimg);
                                     divtext.appendChild(diva);
                                 }else{
-                                    var textNode = document.createTextNode("il contenuto è un file");
-                                    divtext.appendChild(textNode);
+                                    var diva = document.createElement("a"); 
+                                    diva.href=x[i].childNodes[3].textContent;
+                                    diva.setAttribute('href',x[i].childNodes[3].textContent);
+                                    diva.setAttribute('target','_blank');
+                                    diva.innerHTML = "allegato";
+                                    divtext.appendChild(diva);
                                 }
                                 var divTime = document.createElement("div");
                                 divTime.setAttribute("class","dateTime");

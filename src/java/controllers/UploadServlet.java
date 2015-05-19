@@ -77,10 +77,19 @@ public class UploadServlet extends HttpServlet{
             
             Conversation conv = rep.GetConversation();
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            String fileNameReal = request.getPart("file").getSubmittedFileName();
+            //
+            Part file = request.getPart("file");
+            String fileNameReal = file.getSubmittedFileName();
+            String type="";
+            if(file.getContentType().contains("image")){
+                type="img";
+            }else{
+                type="doc";
+            }
+            //
             Date date = new Date();
             String fileRelative = this.getServletContext().getContextPath()+"/images/"+patientUser+"/"+fileNameReal;
-            rep.addXMLMessage(sendRole, receiverRole,"img", fileRelative, date.toString());
+            rep.addXMLMessage(sendRole, receiverRole,type, fileRelative, date.toString());
             InputStream in = request.getPart("file").getInputStream();
             OutputStream out = new FileOutputStream(filePath+"/"+fileNameReal);
             byte[] buffer = new byte[4096];
