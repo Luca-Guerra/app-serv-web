@@ -59,44 +59,50 @@ public class SendMessage extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Istanzio il repository
-            System.out.println("RICHIESTA EFFETTUATA SEND MESSAGE");
-            String sendRole = request.getParameter("role");
+            
             String message = request.getParameter("message");
-            String user=request.getParameter("patientUsername");
-            System.out.println("role="+sendRole+" message="+message+" user="+user);
-            String receiverRole="";
-            AccountRepository repAcc = new AccountRepository(this.getServletContext());
-            HttpSession session = request.getSession();
-            List<Patient> pats=repAcc.getPatient();
-            List<Doctor> docs=repAcc.getDoctors();
-            if(sendRole.equals("patient")){
-                receiverRole="doctor";
-                String doctorUser="";
-                for(int i=0; i<repAcc.getDoctors().size();i++){
-                    if(((Doctor)repAcc.getDoctors().get(i)).hasPatient(user)){
-                        doctorUser = ((Doctor)repAcc.getDoctors().get(i)).getUsername();
-                    }
-                }
-                for(int i=0;i<((Doctor)repAcc.GetAccount(doctorUser)).getPatients().size();i++){
-                    if(((Doctor)repAcc.GetAccount(doctorUser)).getPatients().get(i).equals(user)){
-                        ((Doctor)repAcc.GetAccount(doctorUser)).getLastVisities().set(i, ((Doctor)repAcc.GetAccount(doctorUser)).getLastVisities().get(i)+1);
-                    }
-                }
-                
+            if(message.equals("")){
+                String forward = "jsp/conversation.jsp";
+                response.sendRedirect(request.getContextPath() +"/"+ forward);
             }else{
-                receiverRole="patient";
-                ((Patient)repAcc.GetAccount(user)).setLastVisit(((Patient)repAcc.GetAccount(user)).getLastVisit()+1);
+                System.out.println("RICHIESTA EFFETTUATA SEND MESSAGE");
+                String sendRole = request.getParameter("role");
+                String user=request.getParameter("patientUsername");
+                System.out.println("role="+sendRole+" message="+message+" user="+user);
+                String receiverRole="";
+                AccountRepository repAcc = new AccountRepository(this.getServletContext());
+                HttpSession session = request.getSession();
+                List<Patient> pats=repAcc.getPatient();
+                List<Doctor> docs=repAcc.getDoctors();
+                if(sendRole.equals("patient")){
+                    receiverRole="doctor";
+                    String doctorUser="";
+                    for(int i=0; i<repAcc.getDoctors().size();i++){
+                        if(((Doctor)repAcc.getDoctors().get(i)).hasPatient(user)){
+                            doctorUser = ((Doctor)repAcc.getDoctors().get(i)).getUsername();
+                        }
+                    }
+                    for(int i=0;i<((Doctor)repAcc.GetAccount(doctorUser)).getPatients().size();i++){
+                        if(((Doctor)repAcc.GetAccount(doctorUser)).getPatients().get(i).equals(user)){
+                            ((Doctor)repAcc.GetAccount(doctorUser)).getLastVisities().set(i, ((Doctor)repAcc.GetAccount(doctorUser)).getLastVisities().get(i)+1);
+                        }
+                    }
+
+                }else{
+                    receiverRole="patient";
+                    ((Patient)repAcc.GetAccount(user)).setLastVisit(((Patient)repAcc.GetAccount(user)).getLastVisit()+1);
+                }
+                List<Account> acc = repAcc.GetAccounts();
+                repAcc.writeAccounts(repAcc.GetAccounts());
+                // Setto il forward di default
+                String forward = "jsp/conversation.jsp";
+                ConversationRepository rep = new ConversationRepository(getServletContext(),user);
+                Conversation conv = rep.GetConversation();
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                Date date = new Date();
+                rep.addXMLMessage(sendRole, receiverRole,"text", message, date.toString());
+                response.sendRedirect(request.getContextPath() +"/"+ forward);
             }
-            List<Account> acc = repAcc.GetAccounts();
-            repAcc.writeAccounts(repAcc.GetAccounts());
-            // Setto il forward di default
-            String forward = "jsp/conversation.jsp";
-            ConversationRepository rep = new ConversationRepository(getServletContext(),user);
-            Conversation conv = rep.GetConversation();
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            Date date = new Date();
-            rep.addXMLMessage(sendRole, receiverRole,"text", message, date.toString());
-            response.sendRedirect(request.getContextPath() +"/"+ forward);
         } catch (TransformerException ex) {
             Logger.getLogger(SendMessage.class.getName()).log(Level.SEVERE, null, ex);
         }
