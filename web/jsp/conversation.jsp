@@ -171,8 +171,6 @@
                     <input class="btn" value="Invia File" type="submit" />
                 </form>
         </div>
-        
-        
         <script type="text/javascript">
             window.onload = function(){
                 getXml();

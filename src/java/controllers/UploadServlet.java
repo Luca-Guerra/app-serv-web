@@ -88,10 +88,15 @@ public class UploadServlet extends HttpServlet{
             }
             //
             Date date = new Date();
+            //fullFileName.substr(fullFileName.lastIndexOf("\\")+1, fullFileName.length);
+            fileNameReal = fileNameReal.substring(fileNameReal.lastIndexOf("\\")+1, fileNameReal.length());
             String fileRelative = this.getServletContext().getContextPath()+"/images/"+patientUser+"/"+fileNameReal;
             rep.addXMLMessage(sendRole, receiverRole,type, fileRelative, date.toString());
             InputStream in = request.getPart("file").getInputStream();
             OutputStream out = new FileOutputStream(filePath+"/"+fileNameReal);
+            System.out.println("file relative="+fileRelative);
+            System.out.println("file altro percorso="+filePath+"\\"+fileNameReal);
+            //OutputStream out = new FileOutputStream(fileRelative);
             byte[] buffer = new byte[4096];
             long count = 0;
             int n=0;
