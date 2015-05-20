@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="/public_webapp/styles/patientHome.css" media="screen" />
+        <link rel="stylesheet" href="/public_webapp/styles/patient-home.css" media="screen" />
         <title>CRM Hospital</title>
     </head>
     <body>
@@ -15,7 +15,7 @@
             </form>
         </div>
         <div>
-            <form method="post" action="/public_webapp/AgendaService">
+            <form method="post" action="../../../../public_webapp/jsp/patient-agend.jsp">
                 <input class="btn" value="Agenda" type="submit" />
             </form>
         </div>

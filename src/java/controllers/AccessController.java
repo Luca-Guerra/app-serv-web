@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -82,6 +83,8 @@ public class AccessController extends HttpServlet {
                 forward = GetForward(account.getRole());
             }
         }
+        Date date = new Date();
+        session.setAttribute("date", date);
         RequestDispatcher dispatcher = request.getRequestDispatcher(forward);  
         dispatcher.forward(request, response);
     }
