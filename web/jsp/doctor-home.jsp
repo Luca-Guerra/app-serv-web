@@ -38,7 +38,7 @@
                 String user=pat.getUsername();
                 int lastVisit=doc.getLastVisities().get(i);
                 %>
-                <div class="alert" href="#" onclick="goToConv('<%=user%>');">
+                <div class="alert" onclick="goToConv('<%=user%>');">
                     <div><%= patName%></div>
                     <div class="new-msg">
                         <div><%= lastVisit%></div>
@@ -48,8 +48,8 @@
             }
         %>
             </div>
-            <div class="agend">
-                <div class="alert">
+            <div class="agend" onclick="location.href='../../../public_webapp/jsp/agend.jsp'">
+                <div class="alert" >
                     <div>Agenda</div>
                 </div>
             </div>

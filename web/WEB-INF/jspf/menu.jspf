@@ -19,6 +19,6 @@
     %>
     </div>
     <div><a href="../../../public_webapp/jsp/access.jsp">Esci</a></div>
-    <div><a href="../../../public_webapp/jsp/patient-agend.jsp">Agenda</a></div>
+    <div><a href="../../../public_webapp/jsp/agend.jsp">Agenda</a></div>
 </div>
 

@@ -5,7 +5,6 @@
  */
 package controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Calendar;
@@ -22,7 +21,6 @@ import javax.servlet.RequestDispatcher;
 import lib.ManageXML;
 import models.Appointment;
 import models.Patient;
-import net.sf.json.JSONObject;
 import repositories.AccountRepository;
 import repositories.AgendaRepository;
 
@@ -52,14 +50,13 @@ public class AgendaService extends HttpServlet{
                 doctor = user;
             }
             AgendaRepository agenda = new AgendaRepository(this.getServletContext(),doctor);
+            agenda.getAppointments();
             String operation = request.getParameter("operation");
             Date date = (Date) session.getAttribute("date");
             switch(operation){
                 case "getAgenda":
-                    String day = request.getParameter("day");
-                    
-                    if(day.equals("today")){
-                        ObjectMapper mapper= new ObjectMapper();
+                    String day = request.getParameter("day");                    
+                    if(day.equals("today")){                
                         response.setContentType("application/json");
                         Calendar c = Calendar.getInstance(); 
                         c.setTime(date); 
@@ -79,8 +76,7 @@ public class AgendaService extends HttpServlet{
                     response.setContentType("application/json");
                     Gson gson = new Gson();
                     response.getOutputStream().print(gson.toJson(agenda.getAppointments(date)));
-                    response.getOutputStream().flush();
-                    
+                    response.getOutputStream().flush();                    
                     break;
                 case "register":
                     int slot = Integer.parseInt(request.getParameter("slot"));
@@ -90,9 +86,21 @@ public class AgendaService extends HttpServlet{
                     }else{
                         p = new Appointment(date, false, "", slot);
                     }
-                    agenda.addAppointment(p);
-                    break;
-                case "unregister":
+                    if(role.equals("doctor")){
+                        if(agenda.hasAppointment(p)){
+                            agenda.deleteAppointment(p);
+                        }else{
+                            agenda.addAppointment(p);
+                        }
+                    }else{
+                        if(agenda.getAppointment(p)==null){
+                            agenda.addAppointment(p);
+                        }else{
+                            if(user.equals(agenda.getAppointment(p).getPatient())){
+                                agenda.deleteAppointment(p);
+                            }
+                        }
+                    }
                     break;
             }
         } catch (Exception ex) {

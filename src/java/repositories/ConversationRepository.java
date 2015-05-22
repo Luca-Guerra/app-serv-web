@@ -27,6 +27,7 @@ public class ConversationRepository extends BaseRepository {
     public ConversationRepository(ServletContext servletContext, String PatientUsername){
         super(servletContext, "WEB-INF/conversation/"+PatientUsername+"/"+PatientUsername+".xml");
     }
+    
     public Conversation GetConversation(){
         // Cerco l'account richiesto
         Conversation conv = new Conversation();

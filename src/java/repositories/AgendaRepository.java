@@ -15,9 +15,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.chart.PieChart.Data;
 import javax.servlet.ServletContext;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
+import lib.ManageXML;
 import models.Agenda;
 import models.Appointment;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -116,4 +120,32 @@ public class AgendaRepository extends BaseRepository{
         }
         return appointments;
     }
+    
+    public void deleteAppointment(Appointment app) throws IOException{
+        try {
+            ManageXML xml = new ManageXML();
+            Document myDoc = xml.newDocument();
+            doc = myDoc;
+            Element agendaEl = myDoc.createElement("agenda");
+            myDoc.appendChild(agendaEl);
+            agenda.deleteAppointment(app);
+            writeRepository();
+            for(int i=0;i<agenda.getAppointments().size();i++){
+                addAppointment(agenda.getAppointments().get(i));
+            }
+        } catch (TransformerException ex) {
+            Logger.getLogger(AgendaRepository.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(AgendaRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public boolean hasAppointment(Appointment app){
+        return agenda.hasAppointment(app);
+    }
+    
+    public Appointment getAppointment(Appointment app){
+        return agenda.getAppointment(app);
+    }
+    
 }

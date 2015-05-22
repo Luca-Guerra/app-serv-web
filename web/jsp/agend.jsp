@@ -1,5 +1,5 @@
 <%-- 
-    Document   : patient-agend
+    Document   : agend
     Created on : 15-feb-2015, 16.18.06
     Author     : Luca
 --%>
@@ -10,11 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="/public_webapp/styles/global.css" media="screen" />
+        <link rel="stylesheet" href="/public_webapp/styles/agend.css" media="screen" />
         <title>Agend</title>
         <script type="text/javascript">
             function getDayAgend(days){
                 var xmlHttp;
                 var dateGlobal;
+                var username = '<%= session.getAttribute("username")%>';
+                var role = '<%= session.getAttribute("role")%>';
                 console.log("RICHIESTA");
                 xmlHttp = new XMLHttpRequest();
                 xmlHttp.open("POST","../AgendaService",true)
@@ -31,10 +34,22 @@
                         document.getElementById("day").innerHTML = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
                         for(var j = 0; j<myArr.length; j++){
                             var text = "slot "+(myArr[j].slot+1);
-                            if(myArr[j].available==true){
+                            console.log("available="+myArr[j].available);
+                            console.log("user="+myArr[j].patient);
+                            if(myArr[j].available==true&&myArr[j].patient==""){
                                 text+=" libero";
+                            }else if(myArr[j].available==false){
+                                text+=" disabilitato";
                             }else{
-                                text+=" occupato";
+                                if(role=="doctor"){
+                                    text+=" occupato da "+myArr[j].patient;
+                                }else{
+                                    if(username == myArr[j].patient){
+                                        text+=" occupato da me";
+                                    }else{
+                                        text+=" occupato";
+                                    }
+                                }
                             }
                             document.getElementById(""+j).innerHTML= text;
                         }
@@ -52,7 +67,7 @@
                 xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlHttp.onreadystatechange=function(){
                     if(xmlHttp.readyState==4 && xmlHttp.status == 200){
-                        var jspcall = "../../../public_webapp/jsp/patient-agend.jsp";
+                        var jspcall = "../../../public_webapp/jsp/agend.jsp";
                         window.location.href = jspcall;
                     }
                 }
