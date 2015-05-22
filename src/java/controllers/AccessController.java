@@ -1,7 +1,11 @@
 package controllers;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,29 +68,30 @@ public class AccessController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Istanzio il repository
-        rep = new AccountRepository(getServletContext());
-        String username = request.getParameter("username"); 
-        String password = request.getParameter("password"); 
-        HttpSession session = request.getSession();
-        // Setto il forward di default
-        String forward = "jsp/access.jsp";
-        // Se sono state passate le credenziali di accesso e queste corrispondono con un account presente nel file accounts.xml redirigi verso l'area aopportuna
-        if(username != null && password != null){
-            Account account = rep.GetAccount(username);
-            if(account != null && account.getPassword().equals(password)) { 
-                session.setAttribute("username",username);
-                session.setAttribute("role",account.getRole());
-                if(account.getRole().equals("patient")){
-                    session.setAttribute("patientUsername",username);
+            // Istanzio il repository
+            rep = new AccountRepository(getServletContext());
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            HttpSession session = request.getSession();
+            // Setto il forward di default
+            String forward = "jsp/access.jsp";
+            // Se sono state passate le credenziali di accesso e queste corrispondono con un account presente nel file accounts.xml redirigi verso l'area aopportuna
+            if(username != null && password != null){
+                Account account = rep.GetAccount(username);
+                if(account != null && account.getPassword().equals(password)) {
+                    session.setAttribute("username",username);
+                    session.setAttribute("role",account.getRole());
+                    if(account.getRole().equals("patient")){
+                        session.setAttribute("patientUsername",username);
+                    }
+                    forward = GetForward(account.getRole());
                 }
-                forward = GetForward(account.getRole());
             }
-        }
-        Date date = new Date();
-        session.setAttribute("date", date);
-        RequestDispatcher dispatcher = request.getRequestDispatcher(forward);  
-        dispatcher.forward(request, response);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+            Date date = new Date();
+            session.setAttribute("date", date);
+            RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
+            dispatcher.forward(request, response);
     }
 
     private String GetForward(String role){

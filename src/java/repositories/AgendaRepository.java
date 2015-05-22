@@ -8,9 +8,12 @@ package repositories;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.chart.PieChart.Data;
 import javax.servlet.ServletContext;
 import javax.xml.transform.TransformerException;
 import models.Agenda;
@@ -26,11 +29,11 @@ import org.w3c.dom.NodeList;
 public class AgendaRepository extends BaseRepository{
     private Agenda agenda;
     public AgendaRepository(ServletContext context, String fileName) {
-        super(context, fileName);
+        super(context, "WEB-INF/agenda/"+fileName+".xml");
+        agenda = new Agenda();
     }
     
-    public Agenda getAgenda(){
-        agenda = new Agenda();
+    public ArrayList<Appointment> getAppointments(){
         NodeList nodeList = doc.getElementsByTagName("appointment");
         for (int temp = 0; temp < nodeList.getLength(); temp++) {
             Node nNode = nodeList.item(temp);
@@ -41,7 +44,7 @@ public class AgendaRepository extends BaseRepository{
                 agenda.addAppointment(ShapeAppointments(eElement));
             }
         }
-        return agenda;
+        return agenda.getAppointments();
     }
     
     public Appointment ShapeAppointments(Element e){
@@ -50,7 +53,7 @@ public class AgendaRepository extends BaseRepository{
             String availableString     = e.getElementsByTagName("available").item(0).getTextContent();
             String patient    = e.getElementsByTagName("patient").item(0).getTextContent();
             int slot = Integer.parseInt(e.getElementsByTagName("slot").item(0).getTextContent());
-            SimpleDateFormat sdf = new SimpleDateFormat();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
             Date date = sdf.parse(dateString);
             boolean available=false;
             if(availableString.equals("true")){
@@ -68,7 +71,9 @@ public class AgendaRepository extends BaseRepository{
         Element appointment= doc.createElement("appointment");
         
         Element date = doc.createElement("date");
-        date.appendChild(doc.createTextNode(app.getData().toString()));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+        String dateS = sdf.format(app.getData());
+        date.appendChild(doc.createTextNode(dateS));
         
         Element available = doc.createElement("available");
         available.appendChild(doc.createTextNode(String.valueOf(app.isAvailable())));
@@ -83,7 +88,7 @@ public class AgendaRepository extends BaseRepository{
         appointment.appendChild(available);
         appointment.appendChild(patient);
         appointment.appendChild(slot);
-        doc.getElementsByTagName("appointment").item(0).appendChild(appointment);
+        doc.getElementsByTagName("agenda").item(0).appendChild(appointment);
         try {
             writeRepository();
         } catch (TransformerException ex) {
@@ -91,5 +96,24 @@ public class AgendaRepository extends BaseRepository{
         } catch (IOException ex) {
             Logger.getLogger(ConversationRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public ArrayList<Appointment> getAppointments(Date date){
+        ArrayList<Appointment> appointments= new ArrayList<Appointment>();
+        for(int i = 0; i<8; i++){
+            appointments.add(new Appointment(date, true, "", i));
+        }
+        Calendar c = Calendar.getInstance(); 
+        c.setTime(date); 
+        getAppointments();
+        for(int i=0;i<agenda.getAppointments().size();i++){
+            Date dateEl = agenda.getAppointments().get(i).getData();
+            Calendar cEl = Calendar.getInstance(); 
+            cEl.setTime(dateEl); 
+            if((c.get(Calendar.DAY_OF_YEAR)==cEl.get(Calendar.DAY_OF_YEAR))&&(c.get(Calendar.YEAR)==cEl.get(Calendar.YEAR))){
+                appointments.set(agenda.getAppointments().get(i).getSlot(),agenda.getAppointments().get(i));
+            }
+        }
+        return appointments;
     }
 }
