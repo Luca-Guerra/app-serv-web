@@ -7,11 +7,11 @@
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
-                    <file>${reference.LibreriaServizi.jar}</file>
+                    <file>${file.reference.gson-2.2.4-javadoc.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.gson-2.2.4-javadoc.jar}</file>
+                    <file>${reference.xml_operator.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
@@ -25,7 +25,7 @@
             </web-module-libraries>
             <web-module-additional-libraries>
                 <library dirs="200">
-                    <file>${file.reference.jackson-core-2.5.1.jar}</file>
+                    <file>${libs.gson.classpath}</file>
                     <path-in-war>/</path-in-war>
                 </library>
             </web-module-additional-libraries>
@@ -38,7 +38,7 @@
         </data>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
             <reference>
-                <foreign-project>LibreriaServizi</foreign-project>
+                <foreign-project>xml_operator</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>
