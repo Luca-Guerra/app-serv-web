@@ -17,10 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.google.gson.*;
-import javax.servlet.RequestDispatcher;
+import java.util.LinkedList;
+import javax.servlet.*;
 import lib.ManageXML;
 import models.Appointment;
 import models.Patient;
+import models.UserQueuedAsync;
+import org.w3c.dom.Document;
 import repositories.AccountRepository;
 import repositories.AgendaRepository;
 
@@ -31,8 +34,9 @@ import repositories.AgendaRepository;
 @WebServlet(urlPatterns = {"/AgendaService"}, asyncSupported = true)
 public class AgendaService extends HttpServlet{
     
-    private HashMap<String, Object> contexts = new HashMap<String, Object>();
-    
+    private HashMap<String, UserQueuedAsync> contexts = new HashMap<String, UserQueuedAsync>();
+    String answer = null;
+    OutputStream os;
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -49,6 +53,7 @@ public class AgendaService extends HttpServlet{
             }else{
                 doctor = user;
             }
+            session.setAttribute("doctor", doctor);
             AgendaRepository agenda = new AgendaRepository(this.getServletContext(),doctor);
             agenda.getAppointments();
             String operation = request.getParameter("operation");
@@ -71,6 +76,9 @@ public class AgendaService extends HttpServlet{
                         c.setTime(date); 
                         c.add(Calendar.DATE, 1);
                         date = c.getTime();
+                    }
+                    synchronized (this) {
+                        contexts.put(user, new UserQueuedAsync(user, date, doctor, new LinkedList<String>()));
                     }
                     session.setAttribute("date", date);
                     response.setContentType("application/json");
@@ -100,6 +108,75 @@ public class AgendaService extends HttpServlet{
                                 agenda.deleteAppointment(p);
                             }
                         }
+                    }
+                    synchronized(this) {
+                        gson = new Gson();
+                        for (String destUser : contexts.keySet()) {
+                            UserQueuedAsync value = contexts.get(destUser);
+                            if (value.buffer instanceof AsyncContext) {
+                                if(value.sameContext(date, doctor)){
+                                    ServletOutputStream aos = ((AsyncContext) value.buffer).getResponse().getOutputStream();
+                                    //mngXML.transform(aos, data);
+                                    //aos.close();  
+                                    aos.print(gson.toJson(agenda.getAppointments(date)));
+                                    aos.flush();
+                                    aos.close();
+                                    ((AsyncContext) value).complete();
+                                    contexts.put(destUser, new UserQueuedAsync(user, date, doctor, new LinkedList<String>()));
+                                }
+                            } else {
+                                ((LinkedList<String>) value.buffer).addLast(gson.toJson(agenda.getAppointments(date)));
+                            }
+                        }             
+                    }
+                    break;
+                case "popAgenda":
+                    boolean async;
+                    synchronized(this) {
+                        LinkedList<String> list = (LinkedList<String>) contexts.get(user).buffer;
+                        if (async=list.isEmpty()) {                        
+                            AsyncContext asyncContext = request.startAsync();
+                            asyncContext.setTimeout(10 * 1000);
+                            asyncContext.addListener(new AsyncAdapter(){
+                                @Override
+                                public void onTimeout(AsyncEvent e) {
+                                    try {
+                                    AsyncContext asyncContext = e.getAsyncContext();
+                                    String user = (String) ((HttpServletRequest) asyncContext.getRequest()).getSession().getAttribute("username");
+                                    System.out.println("timeout event launched for: "+ user);
+                                    /*ManageXML mngXML = new ManageXML();
+                                    Document answer = mngXML.newDocument();
+                                    answer.appendChild(answer.crea1teElement("timeout"));*/
+                                    
+                                    boolean confirm;
+                                    synchronized(AgendaService.this) {
+                                        if (confirm = (contexts.get(user).buffer instanceof AsyncContext))
+                                            contexts.put(user,new UserQueuedAsync(user, (Date) session.getAttribute("date"), (String) session.getAttribute("doctor"), new LinkedList<> ()));
+                                        }
+                                        if (confirm) { 
+                                            /*OutputStream tos = asyncContext.getResponse().getOutputStream();
+                                            mngXML.transform(tos, answer);
+                                            tos.close();                 */
+                                            Gson gson = new Gson();
+                                            response.getOutputStream().print(gson.toJson("timeout"));
+                                            response.getOutputStream().flush();
+                                            asyncContext.complete(); 
+                                        }
+                                } catch (Exception ex) { System.out.println(ex); }
+                                }
+                            });
+                            contexts.put(user,new UserQueuedAsync(user, date, doctor, asyncContext));
+                        } else{
+                            answer=list.removeFirst();
+                        }
+                    }
+                    if (!async) {
+                        /*os = response.getOutputStream();
+                        mngXML.transform(os, answer);
+                        os.close();  */     
+                        gson = new Gson();
+                        response.getOutputStream().print(answer);
+                        response.getOutputStream().flush();
                     }
                     break;
             }

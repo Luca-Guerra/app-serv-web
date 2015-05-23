@@ -5,6 +5,7 @@
  */
 package models;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -22,4 +23,18 @@ public class UserQueuedAsync {
         this.doctor = doctor;
         this.buffer = buffer;
     }
+    
+    public boolean sameContext(Date myDate, String myDoctor){
+        Calendar d1 = Calendar.getInstance();
+        Calendar d2 = Calendar.getInstance();
+        d1.setTime(date);
+        d2.setTime(myDate);
+        if((d1.get(Calendar.DAY_OF_YEAR)==d2.get(Calendar.DAY_OF_YEAR))&&(d1.get(Calendar.YEAR)==d2.get(Calendar.YEAR))){
+            if(doctor.equals(myDoctor)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }

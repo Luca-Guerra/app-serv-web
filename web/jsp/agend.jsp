@@ -18,6 +18,7 @@
                 var dateGlobal;
                 var username = '<%= session.getAttribute("username")%>';
                 var role = '<%= session.getAttribute("role")%>';
+                var day = days;
                 console.log("RICHIESTA");
                 xmlHttp = new XMLHttpRequest();
                 xmlHttp.open("POST","../AgendaService",true)
@@ -52,6 +53,7 @@
                                 }
                             }
                             document.getElementById(""+j).innerHTML= text;
+                            popAgenda();
                         }
                         //document.getElementById("day").innerHTML='<%session.getAttribute("date").toString();%>'
                     }
@@ -72,6 +74,54 @@
                     }
                 }
                 xmlHttp.send("operation=register&slot="+slot);
+            }
+            function popAgenda(){
+                var xmlHttp;
+                var dateGlobal;
+                var username = '<%= session.getAttribute("username")%>';
+                var role = '<%= session.getAttribute("role")%>';
+                console.log("RICHIESTA");
+                xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("POST","../AgendaService",true)
+                xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlHttp.onreadystatechange=function(){
+                    if(xmlHttp.readyState==4 && xmlHttp.status == 200){
+                        console.log("RISPOSTA");
+                        xmlDoc = xmlHttp;
+                        console.log("file:");
+                        console.log(xmlHttp.responseText);
+                        if(xmlDoc == "timeout"){
+                            popAgenda();
+                        }else{
+                            var myArr = JSON.parse(xmlHttp.responseText);
+                            var date = new Date(myArr[0].data);
+                            dateGlobal = date;
+                            document.getElementById("day").innerHTML = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
+                            for(var j = 0; j<myArr.length; j++){
+                                var text = "slot "+(myArr[j].slot+1);
+                                console.log("available="+myArr[j].available);
+                                console.log("user="+myArr[j].patient);
+                                if(myArr[j].available==true&&myArr[j].patient==""){
+                                    text+=" libero";
+                                }else if(myArr[j].available==false){
+                                    text+=" disabilitato";
+                                }else{
+                                    if(role=="doctor"){
+                                        text+=" occupato da "+myArr[j].patient;
+                                    }else{
+                                        if(username == myArr[j].patient){
+                                            text+=" occupato da me";
+                                        }else{
+                                            text+=" occupato";
+                                        }
+                                    }
+                                }
+                                document.getElementById(""+j).innerHTML= text;
+                                popAgenda();
+                            }
+                        }
+            }
+                }
             }
         </script>
     </head>
