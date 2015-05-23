@@ -19,13 +19,13 @@
                 var username = '<%= session.getAttribute("username")%>';
                 var role = '<%= session.getAttribute("role")%>';
                 var day = days;
-                console.log("RICHIESTA");
+                console.log("RICHIESTA getDayAgend");
                 xmlHttp = new XMLHttpRequest();
                 xmlHttp.open("POST","../AgendaService",true)
                 xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlHttp.onreadystatechange=function(){
                     if(xmlHttp.readyState==4 && xmlHttp.status == 200){
-                        console.log("RISPOSTA");
+                        console.log("RISPOSTA getAgenda");
                         xmlDoc = xmlHttp;
                         console.log("file:");
                         console.log(xmlHttp.responseText);
@@ -53,8 +53,8 @@
                                 }
                             }
                             document.getElementById(""+j).innerHTML= text;
-                            popAgenda();
                         }
+                        popAgenda();
                         //document.getElementById("day").innerHTML='<%session.getAttribute("date").toString();%>'
                     }
                 }
@@ -69,8 +69,9 @@
                 xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlHttp.onreadystatechange=function(){
                     if(xmlHttp.readyState==4 && xmlHttp.status == 200){
-                        var jspcall = "../../../public_webapp/jsp/agend.jsp";
-                        window.location.href = jspcall;
+                        console.log("risposta register");
+                        //var jspcall = "../../../public_webapp/jsp/agend.jsp";
+                        //window.location.href = jspcall;
                     }
                 }
                 xmlHttp.send("operation=register&slot="+slot);
@@ -80,17 +81,19 @@
                 var dateGlobal;
                 var username = '<%= session.getAttribute("username")%>';
                 var role = '<%= session.getAttribute("role")%>';
-                console.log("RICHIESTA");
+                console.log("RICHIESTA popAgenda");
                 xmlHttp = new XMLHttpRequest();
                 xmlHttp.open("POST","../AgendaService",true)
                 xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlHttp.onreadystatechange=function(){
                     if(xmlHttp.readyState==4 && xmlHttp.status == 200){
-                        console.log("RISPOSTA");
+                        console.log("RISPOSTA popAgenda");
                         xmlDoc = xmlHttp;
                         console.log("file:");
                         console.log(xmlHttp.responseText);
-                        if(xmlDoc == "timeout"){
+                        responseText = xmlHttp.responseText;
+                        if(responseText == "timeout"){
+                            Console.log("dentro a timeOut faccio di nuovo pop agenda");
                             popAgenda();
                         }else{
                             var myArr = JSON.parse(xmlHttp.responseText);
@@ -117,11 +120,12 @@
                                     }
                                 }
                                 document.getElementById(""+j).innerHTML= text;
-                                popAgenda();
                             }
+                            popAgenda();
                         }
-            }
+                    }
                 }
+                xmlHttp.send("operation=popAgenda");
             }
         </script>
     </head>

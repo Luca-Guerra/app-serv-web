@@ -41,7 +41,6 @@ public class AgendaService extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            ManageXML mngXml= new ManageXML();
             HttpSession session = request.getSession();
             String role = (String) session.getAttribute("role");
             String user = (String) session.getAttribute("username");
@@ -113,15 +112,17 @@ public class AgendaService extends HttpServlet{
                         gson = new Gson();
                         for (String destUser : contexts.keySet()) {
                             UserQueuedAsync value = contexts.get(destUser);
+                            System.out.println("Scorro i contesti");
                             if (value.buffer instanceof AsyncContext) {
                                 if(value.sameContext(date, doctor)){
+                                    System.out.println("Stesso Contesto!");
                                     ServletOutputStream aos = ((AsyncContext) value.buffer).getResponse().getOutputStream();
                                     //mngXML.transform(aos, data);
                                     //aos.close();  
                                     aos.print(gson.toJson(agenda.getAppointments(date)));
                                     aos.flush();
                                     aos.close();
-                                    ((AsyncContext) value).complete();
+                                    ((AsyncContext) value.buffer).complete();
                                     contexts.put(destUser, new UserQueuedAsync(user, date, doctor, new LinkedList<String>()));
                                 }
                             } else {
@@ -133,6 +134,7 @@ public class AgendaService extends HttpServlet{
                 case "popAgenda":
                     boolean async;
                     synchronized(this) {
+                        System.out.println("CLASSE="+contexts.get(user).buffer.getClass().getName());
                         LinkedList<String> list = (LinkedList<String>) contexts.get(user).buffer;
                         if (async=list.isEmpty()) {                        
                             AsyncContext asyncContext = request.startAsync();
@@ -147,11 +149,10 @@ public class AgendaService extends HttpServlet{
                                     /*ManageXML mngXML = new ManageXML();
                                     Document answer = mngXML.newDocument();
                                     answer.appendChild(answer.crea1teElement("timeout"));*/
-                                    
                                     boolean confirm;
                                     synchronized(AgendaService.this) {
                                         if (confirm = (contexts.get(user).buffer instanceof AsyncContext))
-                                            contexts.put(user,new UserQueuedAsync(user, (Date) session.getAttribute("date"), (String) session.getAttribute("doctor"), new LinkedList<> ()));
+                                            contexts.put(user,new UserQueuedAsync(user, (Date) session.getAttribute("date"), (String) session.getAttribute("doctor"), new LinkedList<String> ()));
                                         }
                                         if (confirm) { 
                                             /*OutputStream tos = asyncContext.getResponse().getOutputStream();
