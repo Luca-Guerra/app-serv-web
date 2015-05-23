@@ -1,19 +1,13 @@
-body
-{
-    background-color: #FFFFFF;
-    font: normal 12px/20px 'Open Sans',sans-serif;
-    margin:0px;
-}
 h1
 {
-    font: normal 3em/20px 'Open Sans',sans-serif;
+    font: normal 2em/20px 'Open Sans',sans-serif;
 }
 .header
 {
     height:50px;
     width: 100%;
     background-color:rgb(3, 81, 88);
-    font-size: 4em;
+    font-size: 2em;
     color:white;
     margin-bottom:200px;
     line-height: 50px;

@@ -10,7 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="/public_webapp/styles/global.css" media="screen" />
-        <link rel="stylesheet" href="/public_webapp/styles/agend.css" media="screen" />
         <title>Agend</title>
         <script type="text/javascript">
             function getDayAgend(days){
@@ -90,10 +89,11 @@
                         console.log("RISPOSTA popAgenda");
                         xmlDoc = xmlHttp;
                         console.log("file:");
-                        console.log(xmlHttp.responseText);
                         responseText = xmlHttp.responseText;
-                        if(responseText == "timeout"){
-                            Console.log("dentro a timeOut faccio di nuovo pop agenda");
+                        console.log(responseText+"== timeout");
+                        console.log(responseText === '"timeout"');
+                        if(responseText == '"timeout"'){
+                            console.log("dentro a timeOut faccio di nuovo pop agenda");
                             popAgenda();
                         }else{
                             var myArr = JSON.parse(xmlHttp.responseText);

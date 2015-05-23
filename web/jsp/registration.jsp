@@ -153,6 +153,20 @@
                         Doctor doc = new Doctor(name, surname, username, password);
                         rep.GetAccounts().add(doc);
                         rep.writeAccounts(rep.GetAccounts());
+                        ManageXML xml = new ManageXML();
+                        Document document = xml.newDocument();
+                        Element agenda = document.createElement("agenda");
+                        document.appendChild(agenda);
+                        
+                        //String path=this.getServletContext().getContextPath()+"/WEB-INF/conversation/"+username+".xml";
+                        ServletContext servletContext = getServletContext();
+                        String path = servletContext.getRealPath("/WEB-INF/agenda/");
+                        path+="/"+username+".xml";
+                        System.out.println("PATH="+path);
+                        File f = new File(path);
+                        f.createNewFile();
+                        OutputStream res = new FileOutputStream(path);
+                        xml.transform(res, document);
                     }
                     %>
                     <div><h1>Registrato</h1></div>

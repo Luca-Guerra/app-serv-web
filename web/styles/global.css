@@ -154,3 +154,19 @@ body p{
 {
     margin-bottom: 160px;
 }
+
+.slots{
+    margin: 100px auto;
+    width: 40%;
+    min-width: 200px;
+    font-size: 2em;
+}
+
+.slot{
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(26, 157, 152);
+    margin-bottom: 30px;
+    height:50px;
+    color:white;
+}
