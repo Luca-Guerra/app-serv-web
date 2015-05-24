@@ -68,6 +68,7 @@ input
 .btn:hover
 {
     background-color: #0097A7;
+    cursor:pointer;
 }
 
 #dashboard
