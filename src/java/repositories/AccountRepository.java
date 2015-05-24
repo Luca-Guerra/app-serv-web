@@ -22,7 +22,7 @@ import org.w3c.dom.NodeList;
 public class AccountRepository extends BaseRepository {
     List<Account> accounts;
     public AccountRepository(ServletContext servletContext){
-        super(servletContext, "WEB-INF/accounts.xml");
+        super(servletContext, "/WEB-INF/accounts.xml");
         ReadAccounts();
     }
     // Fornisce l'account richiesto
@@ -56,7 +56,7 @@ public class AccountRepository extends BaseRepository {
     }
     // Da forma all'elemento trovato nell'xml
     private Account ShapeAccount(Element e){
-        String name = e.getElementsByTagName("name").item(0).getTextContent();
+        String name        = e.getElementsByTagName("name").item(0).getTextContent();
         String surname     = e.getElementsByTagName("surname").item(0).getTextContent();
         String username    = e.getElementsByTagName("username").item(0).getTextContent();
         String password    = e.getElementsByTagName("password").item(0).getTextContent();

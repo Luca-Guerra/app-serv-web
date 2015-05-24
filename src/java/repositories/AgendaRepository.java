@@ -33,7 +33,7 @@ import org.w3c.dom.NodeList;
 public class AgendaRepository extends BaseRepository{
     private Agenda agenda;
     public AgendaRepository(ServletContext context, String fileName) {
-        super(context, "WEB-INF/agenda/"+fileName+".xml");
+        super(context, "/WEB-INF/agenda/"+fileName+".xml");
         agenda = new Agenda();
     }
     

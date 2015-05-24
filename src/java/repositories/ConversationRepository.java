@@ -25,7 +25,7 @@ import org.w3c.dom.NodeList;
 public class ConversationRepository extends BaseRepository {
     
     public ConversationRepository(ServletContext servletContext, String PatientUsername){
-        super(servletContext, "WEB-INF/conversation/"+PatientUsername+"/"+PatientUsername+".xml");
+        super(servletContext, "/WEB-INF/conversation/"+PatientUsername+"/"+PatientUsername+".xml");
     }
     
     public Conversation GetConversation(){
