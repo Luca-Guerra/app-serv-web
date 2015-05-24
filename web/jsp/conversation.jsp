@@ -4,7 +4,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" href="/public_webapp/styles/global.css" media="screen" />
-        <link rel="stylesheet" href="/public_webapp/styles/conversation.css" media="screen" />
         
         <title>CRM Hospital (Medico)</title>
         
@@ -14,8 +13,10 @@
             var patientUsername;
             var role;
             var oldConv;
-            //Caso di caricamento pagina
-            //Quando diventa false vuol dire che sto caricando i messaggi vecchi
+            /* 
+             Caso di caricamento pagina
+             Quando diventa false vuol dire che sto caricando i messaggi vecchi 
+             */
             var first = true;
             console.log("patientUsername=<%= session.getAttribute("patientUsername")%>")
             function getXml(){

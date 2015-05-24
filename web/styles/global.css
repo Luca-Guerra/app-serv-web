@@ -2,6 +2,7 @@ body
 {
     margin:0px;
     font: normal 12px/20px 'Open Sans',sans-serif;
+    background-color: #E0F7FA;
 }
 
 body p, label, select {
@@ -14,10 +15,10 @@ body a {
 
 .header
 {
+    min-width: 600px;
     background-color: #006064;
     color:#FFFFFF;
     font-size: 4em;
-    margin-bottom:200px;
     line-height: 53px;
 }
 
@@ -40,7 +41,7 @@ body a {
     min-width: 200px;
     border: 2px solid #004D40;
     border-radius: 8px;
-    margin: 0 auto; 
+    margin: 150px auto; 
     padding: 10px;
     background-color: #B2DFDB;
     text-align:center;
@@ -73,7 +74,7 @@ input
 {
     margin: 100px auto;
     width: 40%;
-    min-width: 200px;
+    min-width: 600px;
     font-size: 2em;
 }
 
@@ -81,10 +82,10 @@ input
 {
     border-radius: 5px;
     padding: 5px;
-    background-color: #0097A7;
+    background-color: #00838F;
     margin-bottom: 30px;
     height:50px;
-    color:white;
+    color:#FFFFFF;
 }
 
 #dashboard .alert div
@@ -156,7 +157,7 @@ input
     left:0px;
     width: 100%;
     padding: 25px;
-    background-color: rgb(3, 81, 88);
+    background-color: #006064;
 }
 
 .send-msg-box div
@@ -165,9 +166,11 @@ input
     width:40%;
 }
 
-.send-msg-box div textarea
-{
-    width: 90%;
+.send-msg-box input{
+    margin:2px 4%;
+    width:60%;
+    border-radius:4px;
+    border: none;
 }
 
 #conversation
@@ -185,7 +188,7 @@ input
 .slot{
     border-radius: 5px;
     padding: 5px;
-    background-color: rgb(26, 157, 152);
+    background-color: #00838F;
     margin-bottom: 30px;
     height:50px;
     color:white;

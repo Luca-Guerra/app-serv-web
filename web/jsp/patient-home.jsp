@@ -15,24 +15,12 @@
             int lastVisit = pat.getLastVisit();
                 %>
         <div id="dashboard">
-            <div class="alert" onclick="location.href='../../../public_webapp/jsp/conversation.jsp'">
-                <!--<form method="post" action="../../../public_webapp/jsp/conversation.jsp">
-                    <input class="btn" value="Msg" type="submit" />
-                </form>-->
+            <div class="alert" onclick="location.href='/public_webapp/jsp/conversation.jsp'">
                 <div>Messaggi</div>
                  <div class="new-msg">
                     <div><%= lastVisit%></div>
                  </div>
             </div>
-                <!--<form method="post" action="../../../../public_webapp/jsp/agend.jsp">
-                    <input class="btn" value="Agenda" type="submit" />
-                </form>-->
-                <div class="alert" onclick="location.href='../../../public_webapp/jsp/agend.jsp'">
-                    <div>Agenda</div>
-                </div>
         </div>
-        
-            
-        
     </body>
 </html>

@@ -48,11 +48,6 @@
             }
         %>
             </div>
-            <div class="agend" onclick="location.href='/public_webapp/jsp/agend.jsp'">
-                <div class="alert" >
-                    <div>Agenda</div>
-                </div>
-            </div>
         </div>
     </body>
 </html>
