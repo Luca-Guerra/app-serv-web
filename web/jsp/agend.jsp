@@ -131,9 +131,12 @@
     </head>
     <body>
         <%@ include file="/WEB-INF/jspf/menu.jspf" %>
-        <a onclick='getDayAgend("yesterday")'>Indietro</a>
-        <h1 id="day"></h1>
-        <a onclick='getDayAgend("tomorrow")'>Avanti</a>
+        <div class="date-panel">
+            <a class="up" onclick='getDayAgend("tomorrow")'></a>
+            <h1 id="day"></h1>
+            <a class="down" onclick='getDayAgend("yesterday")'></a>
+        </div>
+        
         <div class="slots">
             <div class="slot" id="0" onclick="register(0)">--</div>
             <div class="slot" id="1" onclick="register(1)">--</div>

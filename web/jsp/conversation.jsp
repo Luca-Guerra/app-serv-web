@@ -155,7 +155,7 @@
     </head>
     <body>
         <%@ include file="/WEB-INF/jspf/menu.jspf" %>
-        <div onclick="getXml()"><a>Carica Altro</a></div>
+        <div class="see-other" onclick="getXml()">Vedi Altro</div>
         <div id="conversation"></div>
         <div class="space-msg-box"></div>
         <div class="send-msg-box">

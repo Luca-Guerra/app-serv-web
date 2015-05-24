@@ -178,6 +178,12 @@ input
     margin-bottom: 160px;
 }
 
+.see-other {
+    font-size: 2em;
+    margin: 10px auto;
+    width: 105px;
+}
+
 .slots{
     margin: 100px auto;
     width: 40%;
@@ -192,4 +198,30 @@ input
     margin-bottom: 30px;
     height:50px;
     color:white;
+}
+
+.date-panel {
+    width: 200px;
+    margin: 10px auto;
+}
+
+.date-panel h1 {
+    text-align: center;
+}
+
+.date-panel a {
+    border-bottom: 2px solid #000000;
+    border-left: 2px solid #000000;
+    margin: 0 auto;
+    display: block;
+    height: 10px;
+    width: 10px;
+}
+
+.date-panel a.up {
+    transform: rotate(135deg);
+}
+
+.date-panel a.down {
+    transform: rotate(-45deg);
 }
