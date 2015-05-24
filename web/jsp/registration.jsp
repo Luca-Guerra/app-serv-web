@@ -1,9 +1,3 @@
-<%-- 
-    Document   : registration
-    Created on : 16-mag-2015, 14.50.51
-    Author     : Riccardo
---%>
-
 <%@page import="java.io.FileOutputStream"%>
 <%@page import="java.io.OutputStream"%>
 <%@page import="javax.xml.transform.stream.StreamResult"%>
@@ -22,7 +16,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/public_webapp/styles/registration.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/public_webapp/styles/global.css" media="screen" />
         <title>CRM Hospital</title>
     </head>
     <body>
@@ -59,30 +53,29 @@
             }
         </script>
         <div class="header">CRM HOSPITAL</div>
-        <div class="registration">
+        <div class="form-panel">
             <% Enumeration flds = request.getParameterNames();
                 if(!flds.hasMoreElements()){
                     //Primo caricamento
                 %>
                     <h1>Registrazione</h1>
                     <form method="post" action="../../../public_webapp/jsp/registration.jsp">
-                        Nome:<input type="text" name="name" placeholder="name" />
-                        Cognome:<input type="text" name="surname" placeholder="surname" />
-                        Username:<input type="text" name="username" placeholder="username" />
-                        Password:<input type="password" name="password" placeholder="password" />
-                        Ruolo:
+                         <label for="role">Ruolo:</label>
                         <select id="selectRole" name="role" onchange="generateDoctor()">
                             <option value="doctor" selected>Dottore</option>
                             <option value="patient">Paziente</option>
                         </select>
+                        <input type="text" name="name" placeholder="name" />
+                        <input type="text" name="surname" placeholder="surname" />
+                        <input type="text" name="username" placeholder="username" />
+                        <input type="password" name="password" placeholder="password" />
+                       
                         <div id="registrationDoctor">
                             
                         </div>
                         <input class="btn" value="Registrati" type="submit" />
                     </form>
-                    <form method="post" action="../../../public_webapp/jsp/access.jsp">
-                        <input class="btn" value="Home" type="submit" />
-                    </form>
+                    <a href="/public_webapp/jsp/access.jsp">Home</a>
                 <%
             }else{
                 String name=request.getParameter("name");

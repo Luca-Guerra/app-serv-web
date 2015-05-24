@@ -4,49 +4,69 @@ body
     font: normal 12px/20px 'Open Sans',sans-serif;
 }
 
-body p{
+body p, label, select {
     font-size:2em;
+}
+body a {
+    color:#FFFFFF;
+    text-decoration: none;
 }
 
 .header
 {
-    background-color: rgb(3, 81, 88);
-    overflow: auto;
-    width: 100%;
+    background-color: #006064;
+    color:#FFFFFF;
+    font-size: 4em;
+    margin-bottom:200px;
+    line-height: 53px;
 }
 
-.header span
-{
-    color: white;
-    font-size: 3em;
-    width: 200px;
-    float: left;
-    margin-top: 26px;
-}
-
-.header div
-{
-    width: 150px; 
-    padding:16px;
-    text-align:center;
-    display:inline-block;
-    font-size: 3em;
-    border: 1px solid;
-    border-radius:5px;
-    background-color: white;
+.header span {
     float:right;
-    margin:5px;
+    font-size: 0.5em;
+    margin-right: 10px;
 }
 
-.header div img
-{
-    width: 50px;
-    height: 50px;
+.menu {
+    margin-left: 10px;
 }
 
-.header div img:hover
+.menu a {
+    font-size: 0.5em;
+}
+
+.form-panel{
+    width:30%;
+    min-width: 200px;
+    border: 2px solid #004D40;
+    border-radius: 8px;
+    margin: 0 auto; 
+    padding: 10px;
+    background-color: #B2DFDB;
+    text-align:center;
+}
+
+.form-panel input {
+    margin:5px 4%;
+    width:90%;
+    height:40px;
+}
+
+input
 {
-    cursor: pointer;
+    font-size: 2em;
+}
+
+.btn {
+    background-color: #FFFFFF;
+    border:1px solid;
+    border-radius:5px;
+    width:150px !important;
+}
+
+.btn:hover
+{
+    background-color: #0097A7;
 }
 
 #dashboard
@@ -61,7 +81,7 @@ body p{
 {
     border-radius: 5px;
     padding: 5px;
-    background-color: rgb(26, 157, 152);
+    background-color: #0097A7;
     margin-bottom: 30px;
     height:50px;
     color:white;
