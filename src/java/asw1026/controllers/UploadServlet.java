@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package asw1026.controllers;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -25,12 +25,12 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.xml.transform.TransformerException;
 import static jdk.nashorn.internal.objects.NativeError.getFileName;
-import models.Account;
-import models.Conversation;
-import models.Doctor;
-import models.Patient;
-import repositories.AccountRepository;
-import repositories.ConversationRepository;
+import asw1026.models.Account;
+import asw1026.models.Conversation;
+import asw1026.models.Doctor;
+import asw1026.models.Patient;
+import asw1026.repositories.AccountRepository;
+import asw1026.repositories.ConversationRepository;
 /**
  *
  * @author Riccardo

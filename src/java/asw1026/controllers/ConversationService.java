@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package asw1026.controllers;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,16 +23,16 @@ import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
-import lib.ManageXML;
-import models.Account;
-import models.Conversation;
-import models.Doctor;
-import models.Message;
-import models.Patient;
+import asw1026.ManageXML;
+import asw1026.models.Account;
+import asw1026.models.Conversation;
+import asw1026.models.Doctor;
+import asw1026.models.Message;
+import asw1026.models.Patient;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import repositories.AccountRepository;
-import repositories.ConversationRepository;
+import asw1026.repositories.AccountRepository;
+import asw1026.repositories.ConversationRepository;
 
 /**
  *

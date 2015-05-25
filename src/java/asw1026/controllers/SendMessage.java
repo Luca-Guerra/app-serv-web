@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package asw1026.controllers;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -20,13 +20,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.transform.TransformerException;
-import models.Account;
-import models.Conversation;
-import models.Doctor;
-import models.Message;
-import models.Patient;
-import repositories.AccountRepository;
-import repositories.ConversationRepository;
+import asw1026.models.Account;
+import asw1026.models.Conversation;
+import asw1026.models.Doctor;
+import asw1026.models.Message;
+import asw1026.models.Patient;
+import asw1026.repositories.AccountRepository;
+import asw1026.repositories.ConversationRepository;
 
 /**
  *

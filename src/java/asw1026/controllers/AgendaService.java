@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package asw1026.controllers;
 
+import asw1026.AsyncAdapter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Calendar;
@@ -19,13 +20,13 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.*;
 import java.util.LinkedList;
 import javax.servlet.*;
-import lib.ManageXML;
-import models.Appointment;
-import models.Patient;
-import models.UserQueuedAsync;
+import asw1026.ManageXML;
+import asw1026.models.Appointment;
+import asw1026.models.Patient;
+import asw1026.models.UserQueuedAsync;
 import org.w3c.dom.Document;
-import repositories.AccountRepository;
-import repositories.AgendaRepository;
+import asw1026.repositories.AccountRepository;
+import asw1026.repositories.AgendaRepository;
 
 /**
  *

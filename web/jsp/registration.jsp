@@ -5,11 +5,11 @@
 <%@page import="javax.xml.transform.dom.DOMSource"%>
 <%@page import="org.w3c.dom.Element"%>
 <%@page import="org.w3c.dom.Document"%>
-<%@page import="lib.ManageXML"%>
-<%@page import="models.Patient"%>
-<%@page import="models.Doctor"%>
-<%@page import="models.Account"%>
-<%@page import="repositories.AccountRepository"%>
+<%@page import="asw1026.ManageXML"%>
+<%@page import="asw1026.models.Patient"%>
+<%@page import="asw1026.models.Doctor"%>
+<%@page import="asw1026.models.Account"%>
+<%@page import="asw1026.repositories.AccountRepository"%>
 <%@page import="java.util.Enumeration"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -1,4 +1,4 @@
-package controllers;
+package asw1026.controllers;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Account;
-import repositories.AccountRepository;
+import asw1026.models.Account;
+import asw1026.repositories.AccountRepository;
 
 
 @WebServlet(name = "AccessController", urlPatterns = {"/AccessController"})

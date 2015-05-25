@@ -1,4 +1,4 @@
-package models;
+package asw1026.models;
 
 // Modello rappresentante l'entità Account codificata nel file xml
 public abstract class Account{

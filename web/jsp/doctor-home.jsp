@@ -1,6 +1,6 @@
-<%@page import="models.Patient"%>
-<%@page import="models.Doctor"%>
-<%@page import="repositories.AccountRepository"%>
+<%@page import="asw1026.models.Patient"%>
+<%@page import="asw1026.models.Doctor"%>
+<%@page import="asw1026.repositories.AccountRepository"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package repositories;
+package asw1026.repositories;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -18,9 +18,9 @@ import javax.servlet.ServletContext;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
-import lib.ManageXML;
-import models.Agenda;
-import models.Appointment;
+import asw1026.ManageXML;
+import asw1026.models.Agenda;
+import asw1026.models.Appointment;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package repositories;
+package asw1026.repositories;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -11,9 +11,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.xml.transform.TransformerException;
-import models.Account;
-import models.Conversation;
-import models.Message;
+import asw1026.models.Account;
+import asw1026.models.Conversation;
+import asw1026.models.Message;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

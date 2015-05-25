@@ -1,4 +1,4 @@
-package repositories;
+package asw1026.repositories;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,7 +11,7 @@ import javax.servlet.ServletContext;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
-import lib.ManageXML;
+import asw1026.ManageXML;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 

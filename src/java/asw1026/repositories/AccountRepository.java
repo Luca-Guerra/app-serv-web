@@ -1,4 +1,4 @@
-package repositories;
+package asw1026.repositories;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,10 +10,10 @@ import javax.servlet.ServletContext;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
-import lib.ManageXML;
-import models.Account;
-import models.Doctor;
-import models.Patient;
+import asw1026.ManageXML;
+import asw1026.models.Account;
+import asw1026.models.Doctor;
+import asw1026.models.Patient;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
