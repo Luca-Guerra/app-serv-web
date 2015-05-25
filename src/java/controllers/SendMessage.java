@@ -62,7 +62,8 @@ public class SendMessage extends HttpServlet{
             
             String message = request.getParameter("message");
             if(message.equals("")){
-                String forward = "jsp/conversation.jsp";
+                String user=request.getParameter("patientUsername");
+                String forward = "jsp/conversation.jsp?patient="+user;
                 response.sendRedirect(request.getContextPath() +"/"+ forward);
             }else{
                 System.out.println("RICHIESTA EFFETTUATA SEND MESSAGE");
@@ -95,7 +96,7 @@ public class SendMessage extends HttpServlet{
                 List<Account> acc = repAcc.GetAccounts();
                 repAcc.writeAccounts(repAcc.GetAccounts());
                 // Setto il forward di default
-                String forward = "jsp/conversation.jsp";
+                String forward = "jsp/conversation.jsp?patient="+user;
                 ConversationRepository rep = new ConversationRepository(getServletContext(),user);
                 Conversation conv = rep.GetConversation();
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

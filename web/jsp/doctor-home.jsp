@@ -13,8 +13,10 @@
         <%@ include file="/WEB-INF/jspf/menu.jspf" %>
         <script type="text/javascript">
             function goToConv(user){
-                xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("POST","/public_webapp/SetSession",true);
+                var jspcall = "/public_webapp/jsp/conversation.jsp?patient="+user;
+                window.location.href = jspcall;
+                /*xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("POST","/public_webapp/ConversationService",true);
                 xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlHttp.onreadystatechange=function(){
                     if(xmlHttp.readyState==4 && xmlHttp.status == 200){
@@ -23,7 +25,7 @@
                     }
                 }
                 var parameter = "attribute=patientUsername&"+"value="+user;
-                xmlHttp.send(parameter);
+                xmlHttp.send(parameter);*/
             }
         </script>
         <div id="dashboard">

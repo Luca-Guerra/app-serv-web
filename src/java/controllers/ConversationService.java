@@ -56,7 +56,9 @@ public class ConversationService extends HttpServlet{
             String patientUser = request.getParameter("patientUsername");
             String textIndex = request.getParameter("index");
             HttpSession session = request.getSession();
+            session.setAttribute("patientUsername", patientUser);
             String user = (String)session.getAttribute("username");
+            System.out.println("patientUsername="+patientUser);
             AccountRepository accounts = new AccountRepository(getServletContext());
             Account userAccount = accounts.GetAccount(user);
             if(userAccount.getRole().equals("patient")){

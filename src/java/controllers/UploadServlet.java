@@ -47,12 +47,12 @@ public class UploadServlet extends HttpServlet{
         try {
             Part file = request.getPart("file");
             String fileNameReal = file.getSubmittedFileName();
+            String patientUser=request.getParameter("patientUsername");
             if(fileNameReal.equals("")){
-                String forward = "jsp/conversation.jsp";
+                String forward = "jsp/conversation.jsp?patient="+patientUser;
                 response.sendRedirect(request.getContextPath() +"/"+ forward);
             }
             else{
-                String patientUser=request.getParameter("patientUsername");
                 String fileName = "images/"+patientUser+"/";
                 String filePath = getServletContext().getRealPath(fileName);
 
@@ -94,7 +94,9 @@ public class UploadServlet extends HttpServlet{
                 Date date = new Date();
                 //fullFileName.substr(fullFileName.lastIndexOf("\\")+1, fullFileName.length);
                 fileNameReal = fileNameReal.substring(fileNameReal.lastIndexOf("\\")+1, fileNameReal.length());
+
                 String fileRelative = this.getServletContext().getContextPath()+"/images/"+patientUser+"/"+fileNameReal;
+                System.out.println("percorso="+fileRelative);
                 rep.addXMLMessage(sendRole, receiverRole,type, fileRelative, date.toString());
                 InputStream in = request.getPart("file").getInputStream();
                 OutputStream out = new FileOutputStream(filePath+"/"+fileNameReal);
@@ -110,7 +112,7 @@ public class UploadServlet extends HttpServlet{
                 }
                 out.flush();
                 out.close();
-                String forward = "jsp/conversation.jsp";
+                String forward = "jsp/conversation.jsp?patient="+patientUser;
                 response.sendRedirect(request.getContextPath() +"/"+ forward);
                 //String forward = "jsp/conversation.jsp";
                 //response.sendRedirect(request.getContextPath() +"/"+ forward);

@@ -25,7 +25,14 @@
                 if(role=="patient"){
                     patientUsername = "<%= session.getAttribute("username")%>";
                 }else{
-                    patientUsername = "<%= session.getAttribute("patientUsername")%>";
+                    patientUsername = '<%=request.getParameter("patient")%>';
+                    <% if(request.getParameter("patient")!=null){
+                            session.setAttribute("patientUsername", request.getParameter("patient"));
+                        }
+                    %>
+                    if(patientUsername==null){
+                        patientUsername='<%= session.getAttribute("patientUsername")%>';
+                    }
                 }
                 xmlHttp = new XMLHttpRequest();
                 xmlHttp.open("POST","../ConversationService",true)
