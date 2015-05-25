@@ -16,7 +16,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/public_webapp/styles/global.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/public_webapp/style-sheets/global.css" media="screen" />
         <title>CRM Hospital</title>
     </head>
     <body>
@@ -75,7 +75,7 @@
                         </div>
                         <input class="btn" value="Registrati" type="submit" />
                     </form>
-                    <a href="/public_webapp/jsp/access.jsp">Home</a>
+                    <a href="/public_webapp/index.jsp">Home</a>
                 <%
             }else{
                 String name=request.getParameter("name");
@@ -133,7 +133,7 @@
                         //String path=this.getServletContext().getContextPath()+"/WEB-INF/conversation/"+username+".xml";
                         ServletContext servletContext = getServletContext();
                         String path = servletContext.getRealPath("/WEB-INF/conversation/");
-                        String ImgPath = servletContext.getRealPath("/images/");
+                        String ImgPath = servletContext.getRealPath("/multimedia/");
                         new File(path+"/"+username).mkdir();
                         new File(ImgPath+"/"+username).mkdir();
                         path+="/"+username+"/"+username+".xml";
@@ -163,7 +163,7 @@
                     }
                     %>
                     <div><h1>Registrato</h1></div>
-                    <form method="post" action="../../../public_webapp/jsp/access.jsp">
+                    <form method="post" action="../../../public_webapp/index.jsp">
                         <input class="btn" value="Log In" type="submit" />
                     </form>
                     <%

@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <link rel="stylesheet" href="/public_webapp/styles/global.css" media="screen" />
+        <link rel="stylesheet" href="/public_webapp/style-sheets/global.css" media="screen" />
         
         <title>CRM Hospital (Medico)</title>
         

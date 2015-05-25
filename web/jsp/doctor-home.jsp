@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="/public_webapp/styles/global.css" media="screen" />
+        <link rel="stylesheet" href="/public_webapp/style-sheets/global.css" media="screen" />
         <title>CRM Hospital (Medico)</title>
     </head>
     <body>

@@ -53,7 +53,7 @@ public class UploadServlet extends HttpServlet{
                 response.sendRedirect(request.getContextPath() +"/"+ forward);
             }
             else{
-                String fileName = "images/"+patientUser+"/";
+                String fileName = "multimedia/"+patientUser+"/";
                 String filePath = getServletContext().getRealPath(fileName);
 
                 ConversationRepository rep = new ConversationRepository(this.getServletContext(), patientUser);
@@ -95,7 +95,7 @@ public class UploadServlet extends HttpServlet{
                 //fullFileName.substr(fullFileName.lastIndexOf("\\")+1, fullFileName.length);
                 fileNameReal = fileNameReal.substring(fileNameReal.lastIndexOf("\\")+1, fileNameReal.length());
 
-                String fileRelative = this.getServletContext().getContextPath()+"/images/"+patientUser+"/"+fileNameReal;
+                String fileRelative = this.getServletContext().getContextPath()+"/multimedia/"+patientUser+"/"+fileNameReal;
                 System.out.println("percorso="+fileRelative);
                 rep.addXMLMessage(sendRole, receiverRole,type, fileRelative, date.toString());
                 InputStream in = request.getPart("file").getInputStream();

@@ -3,7 +3,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <% 
     if(session.getAttribute("username") == null){
-        response.sendRedirect("/public_webapp/jsp/access.jsp"); 
+        response.sendRedirect("/public_webapp/index.jsp"); 
         return;
     }
 %>
@@ -20,6 +20,6 @@
         }
         %>
        <a href="/public_webapp/jsp/agend.jsp">Agenda</a>
-       <a href="/public_webapp/jsp/access.jsp">Esci</a>
+       <a href="/public_webapp/index.jsp">Esci</a>
     </div>
 </div>

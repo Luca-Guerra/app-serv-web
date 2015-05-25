@@ -45,7 +45,7 @@ public class AccessController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // il forward di default è la pagina di log-in
-        String forward = "jsp/access.jsp";
+        String forward = "index.jsp";
         HttpSession session = request.getSession();
         if(session.getAttribute("username") != null)
             forward = GetForward(session.getAttribute("username").toString());  
@@ -74,7 +74,7 @@ public class AccessController extends HttpServlet {
             String password = request.getParameter("password");
             HttpSession session = request.getSession();
             // Setto il forward di default
-            String forward = "jsp/access.jsp";
+            String forward = "index.jsp";
             // Se sono state passate le credenziali di accesso e queste corrispondono con un account presente nel file accounts.xml redirigi verso l'area aopportuna
             if(username != null && password != null){
                 Account account = rep.GetAccount(username);
@@ -101,7 +101,7 @@ public class AccessController extends HttpServlet {
             case "patient":
                 return "jsp/patient-home.jsp";
             default:
-                return "jsp/access.jsp";
+                return "index.jsp";
         }
     } 
 }
