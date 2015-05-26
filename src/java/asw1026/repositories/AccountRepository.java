@@ -22,7 +22,7 @@ import org.w3c.dom.NodeList;
 public class AccountRepository extends BaseRepository {
     List<Account> accounts;
     public AccountRepository(ServletContext servletContext){
-        super(servletContext, "/WEB-INF/accounts.xml");
+        super(servletContext, "/WEB-INF/xml/accounts.xml");
         ReadAccounts();
     }
     // Fornisce l'account richiesto

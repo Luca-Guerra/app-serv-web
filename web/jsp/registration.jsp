@@ -132,11 +132,11 @@
                         
                         //String path=this.getServletContext().getContextPath()+"/WEB-INF/conversation/"+username+".xml";
                         ServletContext servletContext = getServletContext();
-                        String path = servletContext.getRealPath("/WEB-INF/conversation/");
+                        String path = servletContext.getRealPath("/WEB-INF/xml/conversation/");
                         String ImgPath = servletContext.getRealPath("/multimedia/");
-                        new File(path+"/"+username).mkdir();
+                        //new File(path+"/"+username).mkdir();
                         new File(ImgPath+"/"+username).mkdir();
-                        path+="/"+username+"/"+username+".xml";
+                        path+="/"+username+".xml";
                         System.out.println("PATH="+path);
                         File f = new File(path);
                         f.createNewFile();
@@ -153,7 +153,7 @@
                         
                         //String path=this.getServletContext().getContextPath()+"/WEB-INF/conversation/"+username+".xml";
                         ServletContext servletContext = getServletContext();
-                        String path = servletContext.getRealPath("/WEB-INF/agenda/");
+                        String path = servletContext.getRealPath("/WEB-INF/xml/agenda/");
                         path+="/"+username+".xml";
                         System.out.println("PATH="+path);
                         File f = new File(path);
