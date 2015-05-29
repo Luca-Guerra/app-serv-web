@@ -85,6 +85,8 @@ public class AccessController extends HttpServlet {
                         session.setAttribute("patientUsername",username);
                     }
                     forward = GetForward(account.getRole());
+                }else{
+                    forward=GetForward("unknown");
                 }
             }
             SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
@@ -100,6 +102,8 @@ public class AccessController extends HttpServlet {
                 return "jsp/doctor-home.jsp";
             case "patient":
                 return "jsp/patient-home.jsp";
+            case "unknown":
+                return "index.jsp?LoginError=true";
             default:
                 return "index.jsp";
         }

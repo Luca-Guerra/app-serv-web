@@ -17,6 +17,9 @@
                 <input class="btn" value="Accedi" type="submit" />
             </form>
             <a href="<%= request.getContextPath()%>/jsp/registration.jsp">Registrati</a>
+            <% if(request.getParameter("LoginError")!=null&&request.getParameter("LoginError").equals("true")){%>
+                <div class="error">Username o password errate</div>
+            <%}%>
         </div>
         
     </body>

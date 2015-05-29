@@ -226,3 +226,8 @@ input
 .date-panel a.down {
     transform: rotate(-45deg);
 }
+.error {
+    font-size:medium;
+    color:red;
+    font-weight:bold;
+}
