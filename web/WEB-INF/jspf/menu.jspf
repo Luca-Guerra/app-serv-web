@@ -3,7 +3,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <% 
     if(session.getAttribute("username") == null){
-        response.sendRedirect("/public_webapp/index.jsp"); 
+        response.sendRedirect(request.getContextPath()+"/index.jsp"); 
         return;
     }
 %>
@@ -14,12 +14,12 @@
         <%
         AccountRepository repMenu = new AccountRepository(this.getServletContext());
         if(repMenu.GetAccount((String)session.getAttribute("username")).getClass().equals(Patient.class)){
-            %><a href="/public_webapp/jsp/patient-home.jsp">Home</a><%
+            %><a href="<%=request.getContextPath()%>/jsp/patient-home.jsp">Home</a><%
         }else{
-            %><a href="/public_webapp/jsp/doctor-home.jsp">Home</a><%
+            %><a href="<%=request.getContextPath()%>/jsp/doctor-home.jsp">Home</a><%
         }
         %>
-       <a href="/public_webapp/jsp/agend.jsp">Agenda</a>
-       <a href="/public_webapp/index.jsp">Esci</a>
+       <a href="<%=request.getContextPath()%>/jsp/agend.jsp">Agenda</a>
+       <a href="<%=request.getContextPath()%>/index.jsp">Esci</a>
     </div>
 </div>

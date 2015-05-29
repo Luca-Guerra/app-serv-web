@@ -16,7 +16,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/public_webapp/style-sheets/global.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style-sheets/global.css" media="screen" />
         <title>CRM Hospital</title>
     </head>
     <body>
@@ -59,7 +59,7 @@
                     //Primo caricamento
                 %>
                     <h1>Registrazione</h1>
-                    <form method="post" action="../../../public_webapp/jsp/registration.jsp">
+                    <form method="post" action="<%=request.getContextPath()%>/jsp/registration.jsp">
                          <label for="role">Ruolo:</label>
                         <select id="selectRole" name="role" onchange="generateDoctor()">
                             <option value="doctor" selected>Dottore</option>
@@ -87,28 +87,28 @@
                 if(account!=null){
                     %>
                     <div><h1>Account già presente!</h1></div>
-                    <form method="post" action="../../../public_webapp/jsp/registration.jsp">
+                    <form method="post" action="<%=request.getContextPath()%>/jsp/registration.jsp">
                         <input class="btn" value="Riprova" type="submit" />
                     </form>
                     <%
                 }else if(name.length()==0 || surname.length()==0){
                     %>
                     <div><h1>Inserire Nome e Cognome validi</h1></div>
-                    <form method="post" action="../../../public_webapp/jsp/registration.jsp">
+                    <form method="post" action="<%=request.getContextPath()%>/jsp/registration.jsp">
                         <input class="btn" value="Riprova" type="submit" />
                     </form>
                     <%
                 }else if(username.length()<4){
                     %>
                     <div><h1>Inserire username valido (4 o più caratteri)</h1></div>
-                    <form method="post" action="../../../public_webapp/jsp/registration.jsp">
+                    <form method="post" action="<%=request.getContextPath()%>/jsp/registration.jsp">
                         <input class="btn" value="Riprova" type="submit" />
                     </form>
                     <%
                 }else if(password.length()<4){
                     %>
                     <div><h1>Inserire password valida (4 o più caratteri)</h1></div>
-                    <form method="post" action="../../../public_webapp/jsp/registration.jsp">
+                    <form method="post" action="<%=request.getContextPath()%>/jsp/registration.jsp">
                         <input class="btn" value="Riprova" type="submit" />
                     </form>
                     <%
@@ -163,7 +163,7 @@
                     }
                     %>
                     <div><h1>Registrato</h1></div>
-                    <form method="post" action="../../../public_webapp/index.jsp">
+                    <form method="post" action="<%=request.getContextPath()%>/index.jsp">
                         <input class="btn" value="Log In" type="submit" />
                     </form>
                     <%

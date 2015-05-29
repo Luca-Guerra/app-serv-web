@@ -53,9 +53,9 @@ public class UploadServlet extends HttpServlet{
                 response.sendRedirect(request.getContextPath() +"/"+ forward);
             }
             else{
-                String fileName = "multimedia/"+patientUser+"/";
-                String filePath = getServletContext().getRealPath(fileName);
-
+                String folderName = "/multimedia/"+patientUser+"/";
+                String filePath = request.getSession().getServletContext().getRealPath(folderName);
+                System.out.println("filePath = "+filePath);
                 ConversationRepository rep = new ConversationRepository(this.getServletContext(), patientUser);
                 AccountRepository repAcc = new AccountRepository(this.getServletContext());
                 String sendRole = request.getParameter("role");
@@ -97,11 +97,11 @@ public class UploadServlet extends HttpServlet{
 
                 String fileRelative = this.getServletContext().getContextPath()+"/multimedia/"+patientUser+"/"+fileNameReal;
                 System.out.println("percorso="+fileRelative);
+                System.out.println("file relative="+fileRelative);
+                System.out.println("file altro percorso="+filePath+"\\"+fileNameReal);
                 rep.addXMLMessage(sendRole, receiverRole,type, fileRelative, date.toString());
                 InputStream in = request.getPart("file").getInputStream();
                 OutputStream out = new FileOutputStream(filePath+"/"+fileNameReal);
-                System.out.println("file relative="+fileRelative);
-                System.out.println("file altro percorso="+filePath+"\\"+fileNameReal);
                 //OutputStream out = new FileOutputStream(fileRelative);
                 byte[] buffer = new byte[4096];
                 long count = 0;

@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="/public_webapp/style-sheets/global.css" media="screen" />
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style-sheets/global.css" media="screen" />
         <title>CRM Hospital</title>
     </head>
     <body>
@@ -15,7 +15,7 @@
             int lastVisit = pat.getLastVisit();
                 %>
         <div id="dashboard">
-            <div class="alert" onclick="location.href='/public_webapp/jsp/conversation.jsp'">
+            <div class="alert" onclick="location.href='<%=request.getContextPath()%>/jsp/conversation.jsp'">
                 <div>Messaggi</div>
                  <div class="new-msg">
                     <div><%= lastVisit%></div>

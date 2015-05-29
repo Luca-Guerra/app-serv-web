@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="/public_webapp/style-sheets/global.css" media="screen" />
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style-sheets/global.css" media="screen" />
         <title>Agend</title>
         <script type="text/javascript">
             function getDayAgend(days){
@@ -29,22 +29,22 @@
                         console.log("file:");
                         console.log(xmlHttp.responseText);
                         var myArr = JSON.parse(xmlHttp.responseText);
-                        var date = new Date(myArr[0].data);
+                        var date = new Date(myArr.agenda.appointment[0].data);
                         dateGlobal = date;
                         document.getElementById("day").innerHTML = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
-                        for(var j = 0; j<myArr.length; j++){
-                            var text = "slot "+(myArr[j].slot+1);
-                            console.log("available="+myArr[j].available);
-                            console.log("user="+myArr[j].patient);
-                            if(myArr[j].available==true&&myArr[j].patient==""){
+                        for(var j = 0; j<myArr.agenda.appointment.length; j++){
+                            var text = "slot "+(myArr.agenda.appointment[j].slot+1);
+                            console.log("available="+myArr.agenda.appointment[j].available);
+                            console.log("user="+myArr.agenda.appointment[j].patient);
+                            if(myArr.agenda.appointment[j].available==true&&myArr.agenda.appointment[j].patient==""){
                                 text+=" libero";
-                            }else if(myArr[j].available==false){
+                            }else if(myArr.agenda.appointment[j].available==false){
                                 text+=" disabilitato";
                             }else{
                                 if(role=="doctor"){
-                                    text+=" occupato da "+myArr[j].patient;
+                                    text+=" occupato da "+myArr.agenda.appointment[j].patient;
                                 }else{
-                                    if(username == myArr[j].patient){
+                                    if(username == myArr.agenda.appointment[j].patient){
                                         text+=" occupato da me";
                                     }else{
                                         text+=" occupato";
@@ -69,8 +69,6 @@
                 xmlHttp.onreadystatechange=function(){
                     if(xmlHttp.readyState==4 && xmlHttp.status == 200){
                         console.log("risposta register");
-                        //var jspcall = "../../../public_webapp/jsp/agend.jsp";
-                        //window.location.href = jspcall;
                     }
                 }
                 xmlHttp.send("operation=register&slot="+slot);
@@ -89,6 +87,7 @@
                         console.log("RISPOSTA popAgenda");
                         xmlDoc = xmlHttp;
                         console.log("file:");
+                        console.log(xmlHttp.responseText);
                         responseText = xmlHttp.responseText;
                         console.log(responseText+"== timeout");
                         console.log(responseText === '"timeout"');
@@ -97,22 +96,22 @@
                             popAgenda();
                         }else{
                             var myArr = JSON.parse(xmlHttp.responseText);
-                            var date = new Date(myArr[0].data);
+                            var date = new Date(myArr.agenda.appointment[0].data);
                             dateGlobal = date;
                             document.getElementById("day").innerHTML = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
-                            for(var j = 0; j<myArr.length; j++){
-                                var text = "slot "+(myArr[j].slot+1);
-                                console.log("available="+myArr[j].available);
-                                console.log("user="+myArr[j].patient);
-                                if(myArr[j].available==true&&myArr[j].patient==""){
+                            for(var j = 0; j<myArr.agenda.appointment.length; j++){
+                                var text = "slot "+(myArr.agenda.appointment[j].slot+1);
+                                console.log("available="+myArr.agenda.appointment[j].available);
+                                console.log("user="+myArr.agenda.appointment[j].patient);
+                                if(myArr.agenda.appointment[j].available==true&&myArr.agenda.appointment[j].patient==""){
                                     text+=" libero";
-                                }else if(myArr[j].available==false){
+                                }else if(myArr.agenda.appointment[j].available==false){
                                     text+=" disabilitato";
                                 }else{
                                     if(role=="doctor"){
-                                        text+=" occupato da "+myArr[j].patient;
+                                        text+=" occupato da "+myArr.agenda.appointment[j].patient;
                                     }else{
-                                        if(username == myArr[j].patient){
+                                        if(username == myArr.agenda.appointment[j].patient){
                                             text+=" occupato da me";
                                         }else{
                                             text+=" occupato";

@@ -22,6 +22,23 @@ public class Appointment {
         this.patient=patient;
         this.slot = slot;
     }
+    public Appointment(){}
+    
+    public void setData(Date data){
+        this.data=data;
+    }
+    
+    public void setAvailable(boolean available){
+        this.available = available;
+    }
+    
+    public void setPatient(String patient){
+        this.patient = patient;
+    }
+    
+    public void setSlot(int slot){
+        this.slot = slot;
+    }
     
     public Date getData(){
         return data;

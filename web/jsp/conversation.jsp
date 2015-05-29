@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <link rel="stylesheet" href="/public_webapp/style-sheets/global.css" media="screen" />
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style-sheets/global.css" media="screen" />
         
         <title>CRM Hospital (Medico)</title>
         
@@ -166,13 +166,13 @@
         <div id="conversation"></div>
         <div class="space-msg-box"></div>
         <div class="send-msg-box">
-                <form method="post" action="/public_webapp/SendMessage">
+                <form method="post" action="<%=request.getContextPath()%>/SendMessage">
                     <input type="text" name="message"/>
                     <input type="hidden" name="role" value="<%= session.getAttribute("role")%>"/>
                     <input type="hidden" name="patientUsername" value="<%= session.getAttribute("patientUsername")%>"/>
                     <input class="btn" value="Invia" type="submit" />
                 </form>
-                    <form method="post" action="/public_webapp/UploadServlet" enctype="multipart/form-data">
+                    <form method="post" action="<%=request.getContextPath()%>/UploadServlet" enctype="multipart/form-data">
                     <input type="file" name="file" id="file"/>
                     <input type="hidden" name="role" value="<%= session.getAttribute("role")%>"/>
                     <input type="hidden" name="patientUsername" value="<%= session.getAttribute("patientUsername")%>"/>

@@ -17,16 +17,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.google.gson.*;
 import java.util.LinkedList;
 import javax.servlet.*;
 import asw1026.ManageXML;
+import asw1026.models.Agenda;
 import asw1026.models.Appointment;
+import asw1026.models.DateAppointment;
 import asw1026.models.Patient;
 import asw1026.models.UserQueuedAsync;
 import org.w3c.dom.Document;
 import asw1026.repositories.AccountRepository;
 import asw1026.repositories.AgendaRepository;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.stream.XMLStreamWriter;
+import org.codehaus.jettison.mapped.MappedNamespaceConvention;
+import org.codehaus.jettison.mapped.MappedXMLStreamWriter;
 
 /**
  *
@@ -42,6 +51,11 @@ public class AgendaService extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            DateAppointment dp = new DateAppointment();
+            JAXBContext jc = JAXBContext.newInstance(DateAppointment.class);
+            Marshaller m = jc.createMarshaller();
+            MappedNamespaceConvention mnc = new MappedNamespaceConvention();
+            XMLStreamWriter xmlStreamWriter = new MappedXMLStreamWriter(mnc, response.getWriter());
             HttpSession session = request.getSession();
             String role = (String) session.getAttribute("role");
             String user = (String) session.getAttribute("username");
@@ -82,9 +96,13 @@ public class AgendaService extends HttpServlet{
                     }
                     session.setAttribute("date", date);
                     response.setContentType("application/json");
-                    Gson gson = new Gson();
-                    response.getOutputStream().print(gson.toJson(agenda.getAppointments(date)));
-                    response.getOutputStream().flush();                    
+
+                    //response.getOutputStream().print(gson.toJson(agenda.getAppointments(date)));
+                    dp.setAppointment(agenda.getAppointments(date));
+                    m.marshal(dp, xmlStreamWriter);
+                    xmlStreamWriter.flush();
+                    xmlStreamWriter.close();
+                    //response.getOutputStream().flush();                    
                     break;
                 case "register":
                     int slot = Integer.parseInt(request.getParameter("slot"));
@@ -110,36 +128,49 @@ public class AgendaService extends HttpServlet{
                         }
                     }
                     synchronized(this) {
-                        gson = new Gson();
                         for (String destUser : contexts.keySet()) {
                             UserQueuedAsync value = contexts.get(destUser);
                             System.out.println("Scorro i contesti");
                             if (value.buffer instanceof AsyncContext) {
                                 if(value.sameContext(date, doctor)){
                                     System.out.println("Stesso Contesto!");
-                                    ServletOutputStream aos = ((AsyncContext) value.buffer).getResponse().getOutputStream();
+                                    PrintWriter aos = ((AsyncContext) value.buffer).getResponse().getWriter();
                                     //mngXML.transform(aos, data);
                                     //aos.close();  
-                                    aos.print(gson.toJson(agenda.getAppointments(date)));
-                                    aos.flush();
-                                    aos.close();
+                                    //aos.print(gson.toJson(agenda.getAppointments(date)));
+                                    dp.setAppointment(agenda.getAppointments(date));
+                                    m.marshal(dp, new MappedXMLStreamWriter(mnc, aos));
+                                    xmlStreamWriter.flush();
+                                    xmlStreamWriter.close();
+                                    //aos.flush();
+                                    //aos.close();
                                     ((AsyncContext) value.buffer).complete();
                                     contexts.put(destUser, new UserQueuedAsync(user, date, doctor, new LinkedList<String>()));
                                 }
                             } else {
-                                ((LinkedList<String>) value.buffer).addLast(gson.toJson(agenda.getAppointments(date)));
+                                //((LinkedList<String>) value.buffer).addLast(gson.toJson(agenda.getAppointments(date)));
+                                System.out.println("Ci entro qui?");
+                                StringWriter stringw = new StringWriter();
+                                XMLStreamWriter sw = new MappedXMLStreamWriter(mnc, stringw);
+                                dp.setAppointment(agenda.getAppointments(date));
+                                m.marshal(dp, sw);
+                                sw.flush();
+                                sw.close();
+                                System.out.println("BUFFER VALUE COMET="+stringw.toString());
+                                ((LinkedList<String>) value.buffer).addLast(stringw.toString());
                             }
                         }             
                     }
                     break;
                 case "popAgenda":
                     boolean async;
+                    System.out.println("POPAGENDA!");
                     synchronized(this) {
                         System.out.println("CLASSE="+contexts.get(user).buffer.getClass().getName());
                         LinkedList<String> list = (LinkedList<String>) contexts.get(user).buffer;
                         if (async=list.isEmpty()) {                        
                             AsyncContext asyncContext = request.startAsync();
-                            asyncContext.setTimeout(10 * 1000);
+                            asyncContext.setTimeout(30 * 1000);
                             asyncContext.addListener(new AsyncAdapter(){
                                 @Override
                                 public void onTimeout(AsyncEvent e) {
@@ -159,8 +190,7 @@ public class AgendaService extends HttpServlet{
                                             /*OutputStream tos = asyncContext.getResponse().getOutputStream();
                                             mngXML.transform(tos, answer);
                                             tos.close();                 */
-                                            Gson gson = new Gson();
-                                            response.getOutputStream().print(gson.toJson("timeout"));
+                                            response.getOutputStream().print("timeout");
                                             response.getOutputStream().flush();
                                             asyncContext.complete(); 
                                         }
@@ -175,8 +205,7 @@ public class AgendaService extends HttpServlet{
                     if (!async) {
                         /*os = response.getOutputStream();
                         mngXML.transform(os, answer);
-                        os.close();  */     
-                        gson = new Gson();
+                        os.close();*/
                         response.getOutputStream().print(answer);
                         response.getOutputStream().flush();
                     }

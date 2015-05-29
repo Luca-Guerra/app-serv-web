@@ -105,7 +105,12 @@ public class AgendaRepository extends BaseRepository{
     public ArrayList<Appointment> getAppointments(Date date){
         ArrayList<Appointment> appointments= new ArrayList<Appointment>();
         for(int i = 0; i<8; i++){
-            appointments.add(new Appointment(date, true, "", i));
+            Appointment ap = new Appointment();
+            ap.setData(date);
+            ap.setAvailable(true);
+            ap.setPatient("");
+            ap.setSlot(i);
+            appointments.add(ap);
         }
         Calendar c = Calendar.getInstance(); 
         c.setTime(date); 

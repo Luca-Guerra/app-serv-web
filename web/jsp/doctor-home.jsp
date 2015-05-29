@@ -6,14 +6,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="/public_webapp/style-sheets/global.css" media="screen" />
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style-sheets/global.css" media="screen" />
         <title>CRM Hospital (Medico)</title>
     </head>
     <body>
         <%@ include file="/WEB-INF/jspf/menu.jspf" %>
         <script type="text/javascript">
             function goToConv(user){
-                var jspcall = "/public_webapp/jsp/conversation.jsp?patient="+user;
+                var jspcall = "<%=request.getContextPath()%>/jsp/conversation.jsp?patient="+user;
                 window.location.href = jspcall;
                 /*xmlHttp = new XMLHttpRequest();
                 xmlHttp.open("POST","/public_webapp/ConversationService",true);
