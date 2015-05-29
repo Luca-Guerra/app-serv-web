@@ -90,12 +90,12 @@
                         console.log(xmlHttp.responseText);
                         responseText = xmlHttp.responseText;
                         console.log(responseText+"== timeout");
-                        console.log(responseText === '"timeout"');
-                        if(responseText == '"timeout"'){
+                        var myArr = JSON.parse(xmlHttp.responseText);
+                        if(myArr.timeout != null){
                             console.log("dentro a timeOut faccio di nuovo pop agenda");
                             popAgenda();
                         }else{
-                            var myArr = JSON.parse(xmlHttp.responseText);
+                            
                             var date = new Date(myArr.agenda.appointment[0].data);
                             dateGlobal = date;
                             document.getElementById("day").innerHTML = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();

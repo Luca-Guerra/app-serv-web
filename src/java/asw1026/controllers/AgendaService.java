@@ -34,6 +34,7 @@ import java.io.StringWriter;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.stream.XMLStreamWriter;
+import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.mapped.MappedNamespaceConvention;
 import org.codehaus.jettison.mapped.MappedXMLStreamWriter;
 
@@ -55,7 +56,8 @@ public class AgendaService extends HttpServlet{
             JAXBContext jc = JAXBContext.newInstance(DateAppointment.class);
             Marshaller m = jc.createMarshaller();
             MappedNamespaceConvention mnc = new MappedNamespaceConvention();
-            XMLStreamWriter xmlStreamWriter = new MappedXMLStreamWriter(mnc, response.getWriter());
+            PrintWriter wr = response.getWriter();
+            XMLStreamWriter xmlStreamWriter = new MappedXMLStreamWriter(mnc, wr);
             HttpSession session = request.getSession();
             String role = (String) session.getAttribute("role");
             String user = (String) session.getAttribute("username");
@@ -170,7 +172,7 @@ public class AgendaService extends HttpServlet{
                         LinkedList<String> list = (LinkedList<String>) contexts.get(user).buffer;
                         if (async=list.isEmpty()) {                        
                             AsyncContext asyncContext = request.startAsync();
-                            asyncContext.setTimeout(30 * 1000);
+                            asyncContext.setTimeout(10 * 1000);
                             asyncContext.addListener(new AsyncAdapter(){
                                 @Override
                                 public void onTimeout(AsyncEvent e) {
@@ -180,7 +182,7 @@ public class AgendaService extends HttpServlet{
                                     System.out.println("timeout event launched for: "+ user);
                                     /*ManageXML mngXML = new ManageXML();
                                     Document answer = mngXML.newDocument();
-                                    answer.appendChild(answer.crea1teElement("timeout"));*/
+                                    answer.appendChild(answer.createElement("timeout"));*/
                                     boolean confirm;
                                     synchronized(AgendaService.this) {
                                         if (confirm = (contexts.get(user).buffer instanceof AsyncContext))
@@ -189,9 +191,10 @@ public class AgendaService extends HttpServlet{
                                         if (confirm) { 
                                             /*OutputStream tos = asyncContext.getResponse().getOutputStream();
                                             mngXML.transform(tos, answer);
-                                            tos.close();                 */
-                                            response.getOutputStream().print("timeout");
-                                            response.getOutputStream().flush();
+                                            tos.close();*/
+                                            JSONObject json = new JSONObject();
+                                            json.put("timeout", "timeout");
+                                            wr.print(json.toString());
                                             asyncContext.complete(); 
                                         }
                                 } catch (Exception ex) { System.out.println(ex); }
