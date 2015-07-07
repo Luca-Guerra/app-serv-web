@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<accounts>
+<accounts
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="../../xml-types/accounts.xsd">
   <account>
     <name>Luca</name>
     <surname>Guerra</surname>

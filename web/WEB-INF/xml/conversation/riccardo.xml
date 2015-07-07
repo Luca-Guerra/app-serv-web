@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<messages>
+<messages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="../../../xml-types/conversation.xsd">
     <message>
         <sender>patient</sender>
         <receiver>doctor</receiver>

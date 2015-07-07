@@ -1,3 +1,22 @@
-<?xml version="1.0"?>
-<agenda>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<agenda xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="../../../xml-types/agenda.xsd">
+    <appointment>
+        <date>01/6/2015</date>
+        <available>true</available>
+        <patient>marco</patient>
+        <slot>0</slot>
+    </appointment>
+    <appointment>
+        <date>01/6/2015</date>
+        <available>true</available>
+        <patient>marco</patient>
+        <slot>1</slot>
+    </appointment>
+    <appointment>
+        <date>01/6/2015</date>
+        <available>false</available>
+        <patient/>
+        <slot>2</slot>
+    </appointment>
 </agenda>

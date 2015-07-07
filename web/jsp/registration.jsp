@@ -128,6 +128,8 @@
                         ManageXML xml = new ManageXML();
                         Document doc = xml.newDocument();
                         Element messages = doc.createElement("messages");
+                        messages.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+                        messages.setAttribute("xsi:noNamespaceSchemaLocation", "../../../xml-types/conversation.xsd");
                         doc.appendChild(messages);
                         
                         //String path=this.getServletContext().getContextPath()+"/WEB-INF/conversation/"+username+".xml";
@@ -149,6 +151,8 @@
                         ManageXML xml = new ManageXML();
                         Document document = xml.newDocument();
                         Element agenda = document.createElement("agenda");
+                        agenda.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+                        agenda.setAttribute("xsi:noNamespaceSchemaLocation", "../../../xml-types/agenda.xsd");
                         document.appendChild(agenda);
                         
                         //String path=this.getServletContext().getContextPath()+"/WEB-INF/conversation/"+username+".xml";
