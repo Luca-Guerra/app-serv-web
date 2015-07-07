@@ -33,7 +33,17 @@
                         dateGlobal = date;
                         document.getElementById("day").innerHTML = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
                         for(var j = 0; j<myArr.agenda.appointment.length; j++){
-                            var text = "slot "+(myArr.agenda.appointment[j].slot+1);
+                            var text="Ore ";
+                            var number = (myArr.agenda.appointment[j].slot+8);
+                            if(number<10){
+                                  text+='0'+number+":00";                      
+                            }else{
+                                if(number>12){
+                                    text+=(number+2)+":00";
+                                }else{
+                                    text+=number+":00";    
+                                }
+                            }
                             console.log("available="+myArr.agenda.appointment[j].available);
                             console.log("user="+myArr.agenda.appointment[j].patient);
                             if(myArr.agenda.appointment[j].available==true&&myArr.agenda.appointment[j].patient==""){
@@ -100,7 +110,18 @@
                             dateGlobal = date;
                             document.getElementById("day").innerHTML = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
                             for(var j = 0; j<myArr.agenda.appointment.length; j++){
-                                var text = "slot "+(myArr.agenda.appointment[j].slot+1);
+                                var text="Ore ";
+                            var number = (myArr.agenda.appointment[j].slot+8);
+                            if(number<10){
+                                  text+='0'+number+":00";                      
+                            }else{
+                                if(number>12){
+                                    text+=(number+2)+":00";
+                                }else{
+                                    text+=number+":00";    
+                                }
+                            }
+                                
                                 console.log("available="+myArr.agenda.appointment[j].available);
                                 console.log("user="+myArr.agenda.appointment[j].patient);
                                 if(myArr.agenda.appointment[j].available==true&&myArr.agenda.appointment[j].patient==""){

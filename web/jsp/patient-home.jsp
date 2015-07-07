@@ -21,6 +21,9 @@
                     <div><%= lastVisit%></div>
                  </div>
             </div>
+            <div class="alert" onclick="location.href='<%=request.getContextPath()%>/jsp/agend.jsp'">
+                     <div>Agenda</div>
+            </div>
         </div>
     </body>
 </html>
