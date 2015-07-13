@@ -18,7 +18,7 @@ and open the template in the editor.
                 <ul>
                     <li><b>Fabio Consalici</b> 0000712096 fabio.consalici@studio.unibo.it</li> 
                     <li><b>Riccardo Drudi</b> 0000709690 riccardo.drudi@studio.unibo.it</li>
-                    <li><b>Luca Guerra</b> 0000 luca.guerra4@studio.unibo.it</li>
+                    <li><b>Luca Guerra</b> 0000713315 luca.guerra4@studio.unibo.it</li>
                 </ul>
             </div>
             <div id="description">
@@ -50,6 +50,45 @@ and open the template in the editor.
             </div>
             <div id="implementation">
                 <b>Realizzazione del sito</b>:
+                <ol>
+                    <li>Computazione lato Client: per quanto riguarda la parte relativa alla registrazione
+                        nel caso della registrazione di un paziente richiede la lista di dottori al fine
+                        di far scegliere al paziente il suo medico.
+                        Nella messaggistica il client può o richiedere la lista di messaggi (e visualizzarli)
+                        oppure fare una chiamata al server per inserire un messaggio nel DB.
+                        Nell'agenda invece vengono effettuate le richieste per la gestione della comet e
+                        vengono visualizzati gli slot e le disponibilità.
+                    </li>
+                    <li>Computazione lato Server: nel caso della registrazione (di un paziente) invia la lista 
+                        di dottori al client, controlla la correttezza dei dati e salva nel DB gli utenti.
+                        Nel caso della login restituisce la homepage dell'utente in caso di successo, altrimenti segnala l'errore.
+                        Nel caso della messaggistica restituisce una parte della lista dei messaggi e inserisce i nuovi messaggi nel DB.
+                        Nel caso dell'agenda restituisce l'agenda giornaliera e aggiorna gli slot notificando tutti gli utenti connessi.</li>
+                    <li>Informazioni memorizzate e scambiate: Vengono salvate sul server tutte le conversazioni per ogni paziente e 
+                    le agende per ogni medico, vengono anche salvati tutti gli account.
+                    Durante la fase di login e di registrazione vengono scambiate informazioni sul singolo utente.
+                    Vengono scambiate informazioni relative alla messaggistica (parti di conversazione o singolo messaggio) e informazioni
+                    relative all'agenda (agenda giornaliera o singola prenotazione)</li>
+                </ol>
+                <b>Tecnologie utilizzate</b>
+                <ol>
+                    <li>Computazione lato Client: la tecnologia principalmente utilizzata lato client è stata javascript 
+                        data la sua natura cross-device e l'immediata fruibilità sia per sviluppatori che per utenti.</li>
+                    <li>Computazione lato Server: sono state utilizzate JSP e Servlet. le JSP laddove era necessario
+                    formare le pagine in base ai dati elaborati e non era necessario sviluppare una funzionalità complessa.
+                    Le Servlet invece sono state utilizzate per elaborare e passare i dati senza preoccuparsi 
+                    della rappresentazione, demandandola al client.</li>
+                    <li>Informazioni memorizzate e scambiate: il modello delle informazioni è stato fatto utilizzando
+                    delle classi Java che mappavano il file XML con i dati. I file XML inviati sono semplicemente una 
+                    porzione di quelli salvati (n messaggi di una conversazione, l'agenda di un singolo giorno).
+                    I file XML sono stati validati attraverso file XML schema:
+                    <ol>
+                        <li>file XML schema degli <a href='../xml-types/accounts.xsd'>account</a>, viene validato all'interno del file Java che si interfaccia con il database quando si effettua una qualsiasi modifica al file</li>
+                        <li>file XML schema dell'<a href='../xml-types/agenda.xsd'>agenda</a>, viene validato all'interno del file Java che si interfaccia con il database quando si effettua una qualsiasi modifica al file</li>
+                        <li>file XML schema delle <a href='../xml-types/conversation.xsd'>conversation</a>, viene validato all'interno del file Java che si interfaccia con il database quando si effettua una qualsiasi modifica al file</li>
+                    </ol>
+                    </li>
+                </ol>
             </div>
         </div>
     </body>
