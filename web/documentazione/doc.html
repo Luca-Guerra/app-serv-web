@@ -52,7 +52,7 @@ and open the template in the editor.
                 <b>Realizzazione del sito</b>:
                 <ol>
                     <li>Computazione lato Client: per quanto riguarda la parte relativa alla registrazione
-                        nel caso della registrazione di un paziente richiede la lista di dottori al fine
+                        nel caso di inserimento di un paziente richiede la lista di dottori al fine
                         di far scegliere al paziente il suo medico.
                         Nella messaggistica il client può o richiedere la lista di messaggi (e visualizzarli)
                         oppure fare una chiamata al server per inserire un messaggio nel DB.
@@ -73,14 +73,112 @@ and open the template in the editor.
                 <b>Tecnologie utilizzate</b>
                 <ol>
                     <li>Computazione lato Client: la tecnologia principalmente utilizzata lato client è stata javascript 
-                        data la sua natura cross-device e l'immediata fruibilità sia per sviluppatori che per utenti.</li>
+                        data la sua natura cross-device e l'immediata fruibilità sia per sviluppatori che per utenti.
+                        <ul>
+                            <li><b>conversation:</b>Nella gestione della messaggistica viene effettuata immediatamente una chiamata alla servlet ConversationService(getXml) con la quale 
+                                vengono ritornati gli ultimi messaggi della conversazione. Anche nel caso di caricamento di messaggi più vecchi viene 
+                                chiamata getXml passando come parametri gli indici dei messaggi da restituire.
+                                Attraverso l' accesso al DOM della pagina vengono poi inseriti i vari messaggi a video.
+                                Quando si vuole inviare un messaggio viene invece chiamata la servlet sendMessage passando il testo del messagio e altri dati relativi al messaggio stesso tramite post
+                                Allo stesso modo se si vuole inviare un file viene chiamata la servlet UploadServlet tramite post.
+                                
+                            </li>
+                            <li><b>agend:</b>Nella parte relativa all' agenda per prima cosa richiama la servlet AgendaService richiamando l' operation getAgenda con la quale
+                                viene restitutita tutta l' agenda del giorno specificato (gli otto slot e le loro disponibilità).
+                                Appena caricata l' agenda viene richiamato popAgenda (sempre in AgendaService) che realizza lo schema con timeout della pop per la gestione delle comet.
+                                Cliccando in uno specifico slot viene richiamata l' operation register (la push dello schema base delle comet) e in base
+                                al ruolo dell' utente e allo stato dello slot viene effettuata una diversa operazione sullo slot stesso.
+                                Anche in questo caso gli slot sono visualizzati a video mediante l' accesso al DOM della pagina da parte di javascript
+                            </li>
+                            <li><b>home:</b>
+                                Dopo aver effettuato la login si entra nella home.
+                                Nel caso del dottore saranno presenti tutte le conversazioni con i suoi pazienti.
+                                Con javascript è stato gestita la selezione di una specifica conversazione per il determinato paziente 
+                                che porta alla conversazione con lo stesso.
+                            </li>
+                            <li><b>registration:</b>
+                                Nella pagina di registrazione nel caso di inserimento di un paziente viene visualizzata una select con tutti i medici disponibili.
+                                La select è costruita tramite javascript mentre i dati dei dottori sono stati recuperati mediante codice jsp.
+                            </li>
+                        </ul>
+                    </li>
                     <li>Computazione lato Server: sono state utilizzate JSP e Servlet. le JSP laddove era necessario
-                    formare le pagine in base ai dati elaborati e non era necessario sviluppare una funzionalità complessa.
-                    Le Servlet invece sono state utilizzate per elaborare e passare i dati senza preoccuparsi 
-                    della rappresentazione, demandandola al client.</li>
+                        formare le pagine in base ai dati elaborati e non era necessario sviluppare una funzionalità complessa.
+                        Le Servlet invece sono state utilizzate per elaborare e passare i dati senza preoccuparsi 
+                        della rappresentazione, demandandola al client.
+                        Le pagine JSP realizzate sono:
+                        <ul>
+                            <li>
+                                <b>index.jsp:</b>In questa pagina viene utilizzato il codice jsp per effettuare un controllo sulla correttezza dei dati inseriti
+                                e avvertire nel caso si sia sbagliato username o password di login.
+                            </li>
+                            <li>
+                                <b>agend.jsp:</b> L'unico codice jsp inserito in questa pagina riguarta il riferimento al contextPath per realizzare i 
+                                persorsi relativi dei file necessari (ES il css)
+                            </li>
+                            <li>
+                                <b>
+                                    conversation.jsp:
+                                </b> Anche in questa pagina il codice jsp è stato utilizzato per un riferimento al getContextPath e ad alcune informazioni sull' utente presenti in sessione
+                                necessare per l' invio dei messaggi.
+                            </li>
+                            <li>
+                                <b> docotr-home.jsp:</b> In questa pagina il codice jsp è stato utilizzato per elencare i link alle conversazioni con i pazienti dello specifico medico.
+                                In più per ogni paziente viene anche inserito il numero di messaggi non ancora visualizzati.
+                            </li>
+                            <li>
+                                <b>patient-home.jsp:</b>Questa pagina (avendo un layout fisso) il codice jsp è stato utilizzato solo per avere 
+                                il numero di messaggi non ancora visualizzati nella conversazione col medico.
+                            </li>
+                            <li>
+                                <b>registration.jsp:</b>In questa pagina come prima cosa il codice jsp è stato utilizzato all' interno di uno script javascript per inserire la lista dei dottori
+                                nella select apposita.
+                                Vengono poi fatti i controlli sui dati inseriti per la registrazione e nel caso siano corretti viene inserito il nuovo utenti nel db.
+                            </li>
+                        </ul>
+                        Le librerie utilizzate lato server sono state la libreria fornita in classe durante il corso(Lib1) per il parsing dei file xml
+                        e la libreria jettison per il parsing dei dati JSON.
+                        Le servlet realizzate per il progetto sono:
+                        <ul>
+                            <li>
+                                <b>AccessController:</b> questa servlet viene utilizzata per effettuare il login al sito.
+                                Il risulato è un indirizzamento alla pagina home dell' utente o in caso di errore alla stessa pagina con segnalazione dello stesso
+                            </li>
+                            <li>
+                                <b>AgendaService:</b>questa servlet è utilizzata per realizzare il meccanismo comet relativo all' agenda.
+                                Si hanno 3 operation:
+                                <ul>
+                                    <li>
+                                        getAgenda: viene restituita l' agenda del giorno specificato come parametro.
+                                    </li>
+                                    <li>
+                                        register: viene cambiato lo stato di uno slot (prenotato,libero, non disponibile) accedendo e modificando il file xml
+                                        dell' agenda relativa al dottore.
+                                        Essa corrisponde alla push nello schema comet e quindi risveglia tutte le richieste dormienti (sullo specifico giorno) avvisandole della modifica
+                                    </li>
+                                    <li>
+                                        popAgenda: è una richiesta con timeout che corrisponde al pop dello schema comet.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b>ConversationService:</b> questa servlet restituisce gli ultimi 10 messaggi a partire dal parametro specificato.
+                            </li>
+                            <li>
+                                <b>SendMessage:</b> questa servlet viene utilizzata per registrare un messaggio inviato da un utente nel db della conversazione.
+                                Al termine reindirizza alla pagina della conversazione.
+                            </li>
+                            <li>
+                                <b>UploadServlet:</b>questa servlet viene utilizzata per il caricamento di file nella conversazione, anche essa reindirizza alla pagina della conversazione
+                            </li>
+                        </ul>
                     <li>Informazioni memorizzate e scambiate: il modello delle informazioni è stato fatto utilizzando
                     delle classi Java che mappavano il file XML con i dati. I file XML inviati sono semplicemente una 
                     porzione di quelli salvati (n messaggi di una conversazione, l'agenda di un singolo giorno).
+                    E' presente un file account.xml nel quale sono salvati tutti gli utenti che hanno accesso al sistema,i loro dati e le loro relazioni.
+                    Per ogni paziente viene creato un file [username paziente].xml nel quale viene salvata la conversazione come una lista di messaggi.
+                    Per ogni medico invece viene creato un file [username del medico].xml nel quale vengono salavati gli slot dell' agenda modificati.
+                    I file scambiati sono di tipo JSON nel caso dell' agenda e di tipo xml nella conversazione.
                     I file XML sono stati validati attraverso file XML schema:
                     <ol>
                         <li>file XML schema degli <a href='../xml-types/accounts.xsd'>account</a>, viene validato all'interno del file Java che si interfaccia con il database quando si effettua una qualsiasi modifica al file</li>

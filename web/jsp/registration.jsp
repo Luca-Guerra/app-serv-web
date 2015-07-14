@@ -135,7 +135,7 @@
                         //String path=this.getServletContext().getContextPath()+"/WEB-INF/conversation/"+username+".xml";
                         ServletContext servletContext = getServletContext();
                         String path = servletContext.getRealPath("/WEB-INF/xml/conversation/");
-                        String ImgPath = servletContext.getRealPath("/multimedia/");
+                        String ImgPath = servletContext.getRealPath("/images/");
                         //new File(path+"/"+username).mkdir();
                         new File(ImgPath+"/"+username).mkdir();
                         path+="/"+username+".xml";

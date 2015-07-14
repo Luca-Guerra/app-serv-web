@@ -53,7 +53,7 @@ public class UploadServlet extends HttpServlet{
                 response.sendRedirect(request.getContextPath() +"/"+ forward);
             }
             else{
-                String folderName = "/multimedia/"+patientUser+"/";
+                String folderName = "/images/"+patientUser+"/";
                 String filePath = request.getSession().getServletContext().getRealPath(folderName);
                 System.out.println("filePath = "+filePath);
                 ConversationRepository rep = new ConversationRepository(this.getServletContext(), patientUser);
@@ -95,7 +95,7 @@ public class UploadServlet extends HttpServlet{
                 //fullFileName.substr(fullFileName.lastIndexOf("\\")+1, fullFileName.length);
                 fileNameReal = fileNameReal.substring(fileNameReal.lastIndexOf("\\")+1, fileNameReal.length());
 
-                String fileRelative = this.getServletContext().getContextPath()+"/multimedia/"+patientUser+"/"+fileNameReal;
+                String fileRelative = this.getServletContext().getContextPath()+"/images/"+patientUser+"/"+fileNameReal;
                 System.out.println("percorso="+fileRelative);
                 System.out.println("file relative="+fileRelative);
                 System.out.println("file altro percorso="+filePath+"\\"+fileNameReal);

@@ -11,15 +11,15 @@ xsi:noNamespaceSchemaLocation="../../xml-types/accounts.xsd">
     <patients>
         <patient>
             <name>marco</name>
-            <lastVisit>1</lastVisit>
+            <lastVisit>0</lastVisit>
         </patient>
         <patient>
             <name>fabio</name>
-            <lastVisit>2</lastVisit>
+            <lastVisit>0</lastVisit>
         </patient>
         <patient>
             <name>riccardo</name>
-            <lastVisit>3</lastVisit>
+            <lastVisit>0</lastVisit>
         </patient>
     </patients>
   </account>
@@ -31,7 +31,7 @@ xsi:noNamespaceSchemaLocation="../../xml-types/accounts.xsd">
     <role>patient</role>
     <doctor>
         <name>luca</name>
-        <lastVisit>3</lastVisit>
+        <lastVisit>0</lastVisit>
     </doctor>
   </account>
   <account>
@@ -42,7 +42,7 @@ xsi:noNamespaceSchemaLocation="../../xml-types/accounts.xsd">
     <role>patient</role>
     <doctor>
         <name>luca</name>
-        <lastVisit>3</lastVisit>
+        <lastVisit>0</lastVisit>
     </doctor>
   </account>
   <account>
@@ -53,7 +53,7 @@ xsi:noNamespaceSchemaLocation="../../xml-types/accounts.xsd">
     <role>patient</role>
     <doctor>
         <name>luca</name>
-        <lastVisit>3</lastVisit>
+        <lastVisit>0</lastVisit>
     </doctor>
   </account>
 </accounts>
