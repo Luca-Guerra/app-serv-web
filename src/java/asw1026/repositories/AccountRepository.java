@@ -14,6 +14,14 @@ import asw1026.ManageXML;
 import asw1026.models.Account;
 import asw1026.models.Doctor;
 import asw1026.models.Patient;
+import com.sun.org.apache.xerces.internal.parsers.DOMParser;
+import java.io.File;
+import java.net.URL;
+import javax.xml.XMLConstants;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -21,9 +29,12 @@ import org.w3c.dom.NodeList;
 
 public class AccountRepository extends BaseRepository {
     List<Account> accounts;
+    String schemaTxt;
     public AccountRepository(ServletContext servletContext){
         super(servletContext, "/WEB-INF/xml/accounts.xml");
+        schemaTxt = "xml-types/accounts.xsd";
         ReadAccounts();
+        validateXML();
     }
     // Fornisce l'account richiesto
     public Account GetAccount(String username){
@@ -34,7 +45,33 @@ public class AccountRepository extends BaseRepository {
         
         return null;
     }
-    
+    public void validateXML(){
+        try
+        {
+            String filePath;
+            filePath = context.getRealPath(fileName);
+            /* DOMParser parser = new DOMParser();
+             parser.setFeature("http://xml.org/sax/features/validation", true);
+             parser.setProperty(
+               "http://apache.org/xml/properties/schema/external-noNamespaceSchemaLocation", 
+                          schema);
+             ErrorChecker errors = new ErrorChecker();
+             parser.setErrorHandler(errors);
+             parser.parse(filepath);*/
+            schemaTxt = context.getRealPath(schemaTxt);
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI); 
+            File xsdFile = new File(schemaTxt);
+            Schema schema = sf.newSchema(xsdFile); 
+            Validator validator = schema.newValidator();
+            validator.validate(new StreamSource(new File(filePath)));
+            System.out.println("VA TUTTO BENE");
+            
+       }
+       catch (Exception e) 
+       {
+           System.out.print("Problem parsing the file:"+e.getMessage());
+       }
+    }
     public List<Account> GetAccounts(){
         return accounts;
     }
