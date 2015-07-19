@@ -50,12 +50,13 @@ public class AgendaService extends HttpServlet{
     OutputStream os;
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException{
         try {
             DateAppointment dp = new DateAppointment();
             JAXBContext jc = JAXBContext.newInstance(DateAppointment.class);
             Marshaller m = jc.createMarshaller();
             MappedNamespaceConvention mnc = new MappedNamespaceConvention();
+            System.out.println("pre-getWriter");
             PrintWriter wr = response.getWriter();
             XMLStreamWriter xmlStreamWriter = new MappedXMLStreamWriter(mnc, wr);
             HttpSession session = request.getSession();
@@ -169,48 +170,60 @@ public class AgendaService extends HttpServlet{
                     System.out.println("POPAGENDA!");
                     synchronized(this) {
                         System.out.println("CLASSE="+contexts.get(user).buffer.getClass().getName());
-                        LinkedList<String> list = (LinkedList<String>) contexts.get(user).buffer;
-                        if (async=list.isEmpty()) {                        
-                            AsyncContext asyncContext = request.startAsync();
-                            asyncContext.setTimeout(10 * 1000);
-                            asyncContext.addListener(new AsyncAdapter(){
-                                @Override
-                                public void onTimeout(AsyncEvent e) {
-                                    try {
-                                    AsyncContext asyncContext = e.getAsyncContext();
-                                    String user = (String) ((HttpServletRequest) asyncContext.getRequest()).getSession().getAttribute("username");
-                                    System.out.println("timeout event launched for: "+ user);
-                                    /*ManageXML mngXML = new ManageXML();
-                                    Document answer = mngXML.newDocument();
-                                    answer.appendChild(answer.createElement("timeout"));*/
-                                    boolean confirm;
-                                    synchronized(AgendaService.this) {
-                                        if (confirm = (contexts.get(user).buffer instanceof AsyncContext))
-                                            contexts.put(user,new UserQueuedAsync(user, (Date) session.getAttribute("date"), (String) session.getAttribute("doctor"), new LinkedList<String> ()));
-                                        }
-                                        if (confirm) { 
-                                            /*OutputStream tos = asyncContext.getResponse().getOutputStream();
-                                            mngXML.transform(tos, answer);
-                                            tos.close();*/
-                                            JSONObject json = new JSONObject();
-                                            json.put("timeout", "timeout");
-                                            wr.print(json.toString());
-                                            asyncContext.complete(); 
-                                        }
-                                } catch (Exception ex) { System.out.println(ex); }
-                                }
-                            });
-                            contexts.put(user,new UserQueuedAsync(user, date, doctor, asyncContext));
-                        } else{
-                            answer=list.removeFirst();
-                        }
+                        //Modifica prima senza controllo sulla classe di buffer
+                        if(contexts.get(user).buffer.getClass()==LinkedList.class){
+                            LinkedList<String> list = (LinkedList<String>) contexts.get(user).buffer;
+                            if (async=list.isEmpty()) {                        
+                                AsyncContext asyncContext = request.startAsync();
+                                asyncContext.setTimeout(10 * 1000);
+                                asyncContext.addListener(new AsyncAdapter(){
+                                    @Override
+                                    public void onTimeout(AsyncEvent e) {
+                                        try {
+                                        AsyncContext asyncContext = e.getAsyncContext();
+                                        String user = (String) ((HttpServletRequest) asyncContext.getRequest()).getSession().getAttribute("username");
+                                        System.out.println("timeout event launched for: "+ user);
+                                        /*ManageXML mngXML = new ManageXML();
+                                        Document answer = mngXML.newDocument();
+                                        answer.appendChild(answer.createElement("timeout"));*/
+                                        boolean confirm;
+                                        synchronized(AgendaService.this) {
+                                            if (confirm = (contexts.get(user).buffer instanceof AsyncContext))
+                                                contexts.put(user,new UserQueuedAsync(user, (Date) session.getAttribute("date"), (String) session.getAttribute("doctor"), new LinkedList<String> ()));
+                                            }
+                                            if (confirm) { 
+                                                /*OutputStream tos = asyncContext.getResponse().getOutputStream();
+                                                mngXML.transform(tos, answer);
+                                                tos.close();*/
+                                                JSONObject json = new JSONObject();
+                                                json.put("timeout", "timeout");
+                                                wr.print(json.toString());
+                                                asyncContext.complete(); 
+                                            }
+                                    } catch (Exception ex) { System.out.println(ex); }
+                                    }
+                                });
+                                contexts.put(user,new UserQueuedAsync(user, date, doctor, asyncContext));
+                            } else{
+                                answer=list.removeFirst();
+                            }
+                        }else{async=true;}//Fine modifica
                     }
                     if (!async) {
                         /*os = response.getOutputStream();
                         mngXML.transform(os, answer);
                         os.close();*/
-                        response.getOutputStream().print(answer);
-                        response.getOutputStream().flush();
+                        //Modifica Prima non c'era controllo con try catch e dava errore sul getWriter già richiesto
+                        try{
+                            response.getOutputStream().print(answer);
+                            response.getOutputStream().flush();
+                        }catch(IllegalStateException ex){
+                            System.out.println("Writer già richiestoooOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                            wr.print(answer);
+                            wr.flush();
+                            System.out.println("Scrivo su wr");
+                        }
+                        
                     }
                     break;
             }
