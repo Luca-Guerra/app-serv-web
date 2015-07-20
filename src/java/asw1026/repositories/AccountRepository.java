@@ -14,7 +14,6 @@ import asw1026.ManageXML;
 import asw1026.models.Account;
 import asw1026.models.Doctor;
 import asw1026.models.Patient;
-import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import java.io.File;
 import java.net.URL;
 import javax.xml.XMLConstants;

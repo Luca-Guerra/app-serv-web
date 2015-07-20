@@ -175,7 +175,7 @@ public class AgendaService extends HttpServlet{
                             LinkedList<String> list = (LinkedList<String>) contexts.get(user).buffer;
                             if (async=list.isEmpty()) {                        
                                 AsyncContext asyncContext = request.startAsync();
-                                asyncContext.setTimeout(10 * 1000);
+                                asyncContext.setTimeout(30 * 1000);
                                 asyncContext.addListener(new AsyncAdapter(){
                                     @Override
                                     public void onTimeout(AsyncEvent e) {
@@ -214,6 +214,8 @@ public class AgendaService extends HttpServlet{
                         mngXML.transform(os, answer);
                         os.close();*/
                         //Modifica Prima non c'era controllo con try catch e dava errore sul getWriter già richiesto
+                        /*wr.print(answer);
+                        wr.flush();*/
                         try{
                             response.getOutputStream().print(answer);
                             response.getOutputStream().flush();
